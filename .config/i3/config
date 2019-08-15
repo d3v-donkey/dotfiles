@@ -16,6 +16,8 @@ exec --no-startup-id xsettingsd &
 exec --no-startup-id compton -b
 exec --no-startup-id dunst
 exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+exec_always --no-startup-id launch-polybar
+bindsym $mod+Shift+p exec --no-startup-id launch-polybar
 
 # start a terminal
 bindsym $super+Shift+t exec kitty
@@ -159,7 +161,7 @@ gaps outer 1
 # Smart gaps (gaps used if only more than one container on the workspace)
 #smart_gaps on
 
-# Smart borders (draw borders around container only if it is not the only container on this workspace) 
+# Smart borders (draw borders around container only if it is not the only container on this workspace)
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
 smart_borders on
 
@@ -199,5 +201,3 @@ mode "$mode_gaps_outer" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-
-

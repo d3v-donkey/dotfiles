@@ -8,10 +8,11 @@ export ZSH="/home/$(whoami)/.config/oh-my-zsh"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 
+# bullet-train
 
 case $(tty) in
     (/dev/tty[1-9]) ZSH_THEME="gentoo";;
-                (*) ZSH_THEME="bullet-train";;
+                (*) ZSH_THEME="powerlevel9k/powerlevel9k";;
 esac
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)

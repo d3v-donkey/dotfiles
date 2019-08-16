@@ -9,9 +9,8 @@ export ZSH="/home/$(whoami)/.config/oh-my-zsh"
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 
 # bullet-train
-
 case $(tty) in
-    (/dev/tty[1-9]) ZSH_THEME="gentoo";;
+    (/dev/tty[1-9]) ZSH_THEME="pure-thb";;
                 (*) ZSH_THEME="powerlevel9k/powerlevel9k";;
 esac
 
@@ -34,7 +33,7 @@ export BULLETTRAIN_PROMPT_CHAR=
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=fr_FR.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -76,7 +75,7 @@ alias wabd="wadb"
 # one history per shell
 unsetopt share_history
 
-bindkey '^H' backward-kill-word
+# bindkey '^H' backward-kill-word
 
 # ctrl+p natigate directories with fzf
 export FZF_DEFAULT_OPTS='--height 15% --reverse'
@@ -87,7 +86,7 @@ bindkey '^P' fzf-cd-widget
 stty -ixon ixoff
 
 # make caps lock act as esc
-setxkbmap -option caps:escape
+# setxkbmap -option caps:escape
 
 
 # using ctrl+z to switch back background app to foreground
@@ -101,3 +100,9 @@ function fg-bg() {
 }
 zle -N fg-bg
 bindkey '^Z' fg-bg
+
+# Touche de commande
+bindkey "\e[H" beginning-of-line # Début
+bindkey "\e[F" end-of-line # Fin
+bindkey "\e[3~" delete-char
+bindkey "^R" history-incremental-search-backward # Rechercher

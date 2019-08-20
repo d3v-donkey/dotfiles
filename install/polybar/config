@@ -56,7 +56,7 @@ module-margin-left = 0
 ;modules-left = cpu memory filesystem
 
 modules-right = mpd i3 menu0
-modules-center = date
+modules-center = date wlan
 modules-left = cpu cputemp memory updates
 
 separator = "      "
@@ -212,7 +212,8 @@ label = " %percentage_used%%"
 
 [module/wlan]
 type = internal/network
-interface = enp2s0
+;interface = wnp2s0
+interface = wlx983f9f1710f8
 interval = 3.0
 
 format-connected-padding = 1

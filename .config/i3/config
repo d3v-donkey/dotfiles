@@ -10,14 +10,13 @@ floating_modifier $super
 
 #autostart
 
-exec_always --no-startup-id feh --bg-scale ~/wallpaper/wall.png
-#exec --no-startup-id hsetroot -center ~/wallpaper/wallpaper.png
+exec --no-startup-id feh --bg-scale ~/wallpaper/Subway.png
 exec --no-startup-id xsettingsd &
 exec --no-startup-id compton -b
 exec --no-startup-id dunst
 exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
-exec_always --no-startup-id launch-polybar
-bindsym $mod+Shift+p exec --no-startup-id launch-polybar
+exec --no-startup-id ~/.config/polybar/launch.sh
+
 
 # start a terminal
 bindsym $super+Shift+t exec kitty
@@ -186,3 +185,5 @@ mode "$mode_gaps_outer" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
+
+

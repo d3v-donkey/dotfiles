@@ -1,11 +1,13 @@
-# Basic script to kill all old bars and launch new.
+#!/bin/sh
 
-# Terminate already running bad instances
+# Terminate already running bar instances
 killall -q polybar
 
 # Wait until the processes have been shut down
-while grep -x polybar >/dev/null; do sleep 1; done
+while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
-# Launch the example bar
-polybar main_bar
+# Launch bar1 and bar2
+polybar Bar &
+
+echo "Bars launched..."
 

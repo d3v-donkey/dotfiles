@@ -1,0 +1,117 @@
+############ COMMANDES SPÉCIFIQUES GIT ###################
+
+Le fait que Git ait été conçu avec un grand projet comme Linux, il existe beaucoup de commandes Git. Toutefois, pour utiliser les bases de Git, vous aurez seulemenet besoin de connaître quelques termes. Ils commencent tous de la même façon avec le mot « git ».
+
+GIT INIT : Initialise un nouveau dépôt Git. Jusqu’à ce que vous exécutiez cette commande dans un dépôt ou répertoire, c’est juste un dossier ordinaire. Seulement après avoir entré cette commande, il accepte les commandes Git qui suivent.
+
+GIT CONFIG : raccourci de “configurer,” ceci est tout particulièrement utile quand vous paramétrez Git pour la première fois.
+
+GIT HELP : Oublié une commande ? Tapez-ça dans la ligne de commande pour afficher les 21 commandes les plus courantes de Git. Vous pouvez aussi être plus spécifique et saisir “git help init” ou tout autre terme pour voir comment utiliser et configurer une commande spécifique git.
+
+GIT STATUS : Vérifie le statut de votre repository. Voir quels fichiers sont à l’intérieur, quelles sont les modifications à commiter, et sur quelle branche du repository vous êtes en train de travailler.
+
+GIT ADD : Ceci n’ajoute pas de nouveaux fichiers dans votre repository. Au lieu de cela, ceci porte de nouveaux fichiers à l’attention de Git. Après avoir ajouté des fichiers, ils sont inclus dans les « instantanés » du dépôt Git.
+
+GIT COMMIT : la commande la plus importante de Git. Après avoir effectué toute sorte de modification, vous entrez ça afin de prendre un “instantané” du dépôt. Généralement cela s’écrit sous la forme git commit -m “Message ici“. Le -m indique que la section suivante de la commande devrait être lue comme un message.
+
+GIT BRANCH : Vous travaillez avec plusieurs collaborateurs et vous voulez produire des modifications de votre côté ? Cette commande vous permet de construire une nouvelle branche, ou une chronologie des commits, des modifications et des ajouts de fichiers qui sont complètement les vôtres. Votre titre va après la commande. Si vous vouliez créer une nouvelle branche appelée « chats », vous saisiriez git branch chats.
+
+GIT CHECKOUT : Permet littéralement de vérifier un dépôt dans lequel vous n’êtes pas. C’est une commande de navigation qui vous permet de vous déplacer vers le répertoire que vous voulez vérifier. Vous pouvez utiliser cette commande sous la forme git checkout master pour regarder la branche master, ou git checkout chats pour regarder une autre branche.
+
+GIT MERGE : Lorsque vous avez fini de travailler sur une branche, vous pouvez fusionner vos modifications vers la branche master, qui est visible pour tous les collaborateurs. git merge chats prendrait toutes les modifications que vous avez apportées à la branche “chats” et les ajoutera à la branche master.
+
+GIT PUSH : Si vous travaillez sur votre ordinateur local, et voulez que vos commits soient visibles aussi en ligne sur Github, vous « push »ez les modifications vers Github avec cette commande.
+
+GIT PULL : Si vous travaillez sur votre ordinateur local, et que vous voulez la version la plus à jour de votre repository pour travailler dessus, vous “pull”ez (tirez) les modifications provenant de Github avec cette commande.
+
+
+############## 1er phase ##############
+
+> git config --global user.name "d3v-donkey"
+> git config --global user.email "alexandre_maury@outlook.com"
+
+# création d'un projet git
+
+> mkdir ~/nom_du_projet
+> cd ~/nom_du_projet
+
+- Puis, réinitialisez Git de manière à pouvoir démarrer en utilisant des commandes Git à l’intérieur du répertoire. Le dossier est désormais un dépôt Git.
+
+> git init
+
+- Attendez, est-ce le bon fichier ? Voici comment vérifier et vous assurer que c’est bien l’endroit où vous avez stocké votre fichier
+
+> git status
+
+- Et c’est ce que Git vous dira en retour :
+
+########################################################################
+
+# Untracked files:
+#   (use "git add ..." to include in what will be committed)
+#
+
+#       chocolat.jpeg
+
+#######################################################################
+
+- Ayé ils sont ici ! Ajoutez-les dans votre dépôt local Git pour qu’ils soient suivis par Git.
+
+> git add chocolat.jpeg
+
+- Maintenant, faites un “instantané” du dépôt tel qu’il est maintenant avec la commande commit :
+
+> git commit -m "Ajoute chocolat.jpeg."
+
+- Bravo ! Mais vos collègues, acharnés au boulot dans leurs propres dépôts locaux, ne peuvent pas voir votre tout nouveau design ! Ceci parce que le projet principal est stocké dans le compte Github de la société (nom d’utilisateur : 123WebDesign) dans le dépôt intitulé “icecream.”
+
+Parce que vous ne vous êtes pas encore connecté au dépôt GitHub, votre ordinateur ne sait même pas qu’il existe. Aussi, déclarez votre dépôt local :
+
+> git remote add origin https://github.com/d3v-donkey/icecream.git
+
+- Et double-checkez pour vous assurer qu’il le connaît :
+
+> git remote -v
+
+- Pour finir, c’est le moment que vous attendiez. Téléversez ce délicieux sundae sur le projet :
+
+> git push
+
+- Git m’a renvoyé dans mon cas un paquet d’avertissements parce que j’avais simplement produit la commande simple. Pour être plus spécifique, j’ai saisi
+
+> git push --set-upstream origin master
+
+- pour spécifier que je voulais dire la branche master de mon dépôt.
+
+
+############### récupérer un depots ####################
+
+> mkdir ~/nom_du_projet
+> cd ~/nom_du_projet
+> git init
+> git pull https://github.com/username/projet_name.git
+
+# modifier le projet
+
+> git add nouveau_fichier.txt
+> git commit -m "ajout d'une quatrième ligne dans le fichier"
+> git remote add origin https://github.com/d3v-donkey/icecream.git
+> git remote -v
+> git push --set-upstream origin master
+
+################## Glossaire Git pour les Nuls #########################
+
+    git init : Initialise un dépôt git dans un répertoire vide.
+    git status : Affiche le statut des choses dans le répertoire suivi
+    git add <NOM DU FICHIER A SUIVRE> : Ajoute un fichier à suivre dans la zone d’attente
+    git commit -m "entrez votre message" : Consigner (déclarer) toute modification.
+    git remote add origin [adresse URL GitHub ici] : Connecte votre dépôt local avec GitHub.
+    git push -u origin nom_branche : Pousse les modifications vers GitHub
+    git checkout : basculer vers une (autre) branche
+    git -b <NomBranche> : crée une nouvelle branche dans votre dépôt.
+    git log: affiche un journal des modifications au dépôt
+    git clone <URL PROVENANT DE GITHUB> : clone un projet de votre système à partir de github
+    git branch <nom_branche> : crée une copie de la branche master appelée
+    git checkout <branch_name> : bascule vers nom_branche comme branche de travail
+    git checkout master : bascule la branche vers master
+    git branch -a : affiche les branches existantes pour le dépôt particulier

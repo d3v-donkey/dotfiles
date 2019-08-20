@@ -125,8 +125,8 @@ label-visible-padding = 1
 [module/mpd]
 type = internal/mpd
 
-host = gui
-port = 4200
+host = ::1
+port = 4400
 
 ;format-online = <label-song> <icon-prev> <icon-play> <icon-pause> <icon-next> 
 format-online = <label-song>

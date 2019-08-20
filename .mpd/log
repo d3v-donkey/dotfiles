@@ -1,0 +1,27 @@
+
+Aug 21 00:09 : update: added /coolio-gangstas-paradise-feat-lv-official-music-video.mp3
+Aug 21 00:11 : exception: RTIOThread could not get realtime scheduling, continuing anyway: sched_setscheduler failed: Operation not permitted
+Aug 21 00:34 : client: [0] opened from [::1]:40344
+Aug 21 00:34 : client: [0] closed
+Aug 21 00:34 : client: [1] opened from [::1]:40346
+Aug 21 00:34 : client: [1] closed
+Aug 21 00:35 : exception: RTIOThread could not get realtime scheduling, continuing anyway: sched_setscheduler failed: Operation not permitted
+Aug 21 00:37 : client: [0] opened from [::1]:53198
+Aug 21 00:37 : client: [0] closed
+Aug 21 00:38 : client: [1] opened from [::1]:53208
+Aug 21 00:42 : client: [1] closed
+Aug 21 00:43 : client: [2] opened from [::1]:53260
+Aug 21 00:43 : exception: OutputThread could not get realtime scheduling, continuing anyway: sched_setscheduler failed: Operation not permitted
+Aug 21 00:43 : exception: OutputThread could not get realtime scheduling, continuing anyway: sched_setscheduler failed: Operation not permitted
+Aug 21 00:45 : client: [2] closed
+Aug 21 00:45 : player: played "coolio-gangstas-paradise-feat-lv-official-music-video.mp3"
+Aug 21 00:46 : exception: RTIOThread could not get realtime scheduling, continuing anyway: sched_setscheduler failed: Operation not permitted
+Aug 21 00:48 : client: [0] opened from [::1]:35542
+Aug 21 00:48 : exception: OutputThread could not get realtime scheduling, continuing anyway: sched_setscheduler failed: Operation not permitted
+Aug 21 00:52 : player: played "coolio-gangstas-paradise-feat-lv-official-music-video.mp3"
+Aug 21 00:53 : player: played "coolio-gangstas-paradise-feat-lv-official-music-video.mp3"
+Aug 21 00:53 : client: [0] closed
+Aug 21 00:53 : client: [1] opened from [::1]:35636
+Aug 21 00:54 : client: [1] closed
+Aug 21 00:56 : client: [2] opened from [::1]:35640
+Aug 21 00:57 : exception: OutputThread could not get realtime scheduling, continuing anyway: sched_setscheduler failed: Operation not permitted

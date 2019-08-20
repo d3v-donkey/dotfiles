@@ -56,7 +56,7 @@ module-margin-left = 0
 ;modules-left = cpu memory filesystem
 
 modules-right = mpd i3 menu0
-modules-center = date wlan
+modules-center = date wlan eth
 modules-left = cpu cputemp memory updates
 
 separator = "      "

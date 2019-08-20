@@ -371,11 +371,11 @@ type = custom/script
 ;label-padding = 0
 ;label-underline = ${colors.modfg}
 
-exec = sensors | grep --max-count=1 "CPU Temperature:" | awk '{print substr($0,22,2)}'
-;tail = true
-interval = 10
+exec = ~/.config/polybar/CPUtemp.sh 
+tail = true
+interval = 5
 
-label = " %output%°C"
+label = " %output%"
 
 
 [module/gputemp]

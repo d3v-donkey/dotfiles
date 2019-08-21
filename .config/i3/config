@@ -8,7 +8,9 @@ font pango: Noto Sans 8
 # Use Mouse+$super to drag floating windows to their wanted position
 floating_modifier $super
 
-#autostart
+###############
+## Autostart ##
+###############
 
 exec --no-startup-id feh --bg-scale ~/wallpaper/Subway.png
 exec --no-startup-id xsettingsd &
@@ -18,58 +20,75 @@ exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agen
 exec --no-startup-id ~/.config/polybar/launch.sh
 
 
-# start a terminal
+###############
+## Terminal  ##
+###############
+
 bindsym $super+Shift+t exec kitty
 
-# start dmenu (a program launcher)
+
+##################
+## Dmenu + Rofi ##
+##################
+
 bindsym $super+Shift+d exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'Noto Sans:size=8'"
 bindsym $super+d exec rofi -lines 12 -padding 18 -width 60 -location 0 -show drun -sidebar-mode -columns 3 -font 'Noto Sans 8'
 
-# common apps keybinds
+##########################
+## Common apps keybinds ##
+##########################
+
 bindsym Print exec scrot 'Cheese_%a-%d%b%y_%H.%M.png' -e 'viewnior ~/$f'
-bindsym $super+l exec i3lock -i ~/wallpaper/wallpaper.png
+# bindsym $super+Shift+l exec i3lock -i ~/wallpaper/wallpaper.png
 bindsym $super+Shift+w exec firefox
-bindsym $super+Shift+n exec nautilus;workspace 1;focus
+bindsym $super+Shift+n exec pcmanfm
+bindsym $super+n exec gksu pcmanfm
 bindsym $super+Shift+e exec atom
+bindsym $super+Shift+f exec subl
+bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
+bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
 
 #audio control
-bindsym XF86AudioRaiseVolume exec "amixer -q sset Master,0 1+ unmute"
-bindsym XF86AudioLowerVolume exec "amixer -q sset Master,0 1- unmute"
-bindsym XF86AudioMute exec "amixer -q sset Master,0 toggle"
-
-# music control
-bindsym XF86AudioNext exec mpc next
-bindsym XF86AudioPrev exec mpc prev
-bindsym XF86AudioPlay exec mpc toggle
-bindsym XF86AudioStop exec mpc stop
-
-# kill focused window
+bindsym XF86AudioRaiseVolume exec "amixer -q sset Master,0 1+ unmute; notify-send 'volume +'"
+bindsym XF86AudioLowerVolume exec "amixer -q sset Master,0 1- unmute; notify-send 'volume -'"
+bindsym XF86AudioMute exec "amixer -q sset Master,0 toggle; notify-send 'Mute'"
 bindsym $super+c kill
-bindsym $alt+F4 kill
 
 # change focus
+bindsym $super+j focus left
+bindsym $super+k focus down
+bindsym $super+l focus up
+bindsym $super+m focus right
+
+# alternatively, you can use the cursor keys:
 bindsym $super+Left focus left
 bindsym $super+Down focus down
 bindsym $super+Up focus up
 bindsym $super+Right focus right
 
 # move focused window
+bindsym $super+Shift+j move left
+bindsym $super+Shift+k move down
+bindsym $super+Shift+l move up
+bindsym $super+Shift+m move right
+
+# alternatively, you can use the cursor keys:
 bindsym $super+Shift+Left move left
 bindsym $super+Shift+Down move down
 bindsym $super+Shift+Up move up
 bindsym $super+Shift+Right move right
 
-# split in horizontal orientation
-bindsym $super+h split h
-
-# split in vertical orientation
-bindsym $super+v split v
+# split orientation
+bindsym $super+h split h; notify-send 'Split Horizontal'
+bindsym $super+v split v; notify-send 'Split Verticale'
 
 # enter fullscreen mode for the focused container
-bindsym $super+f fullscreen toggle
+bindsym $super+f fullscreen toggle; notify-send 'Full Screen'
 
 # change container layout split
-bindsym $super+s layout toggle split
+bindsym $super+s layout stacking; notify-send 'Mode stacking'
+bindsym $super+w layout tabbed; notify-send 'Mode tabbed'
+bindsym $super+e layout toggle split; notify-send 'Mode split'
 
 # toggle tiling / floating
 bindsym $super+space floating toggle
@@ -77,31 +96,120 @@ bindsym $super+space floating toggle
 # change focus between tiling / floating windows
 bindsym $super+Shift+space focus mode_toggle
 
+# Workspace names
+# to display names or symbols instead of plain workspace numbers you can use
+# something like: set $ws1 1:mail
+#                 set $ws2 2:
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+
 # switch to workspace
 bindsym $alt+Control+Right workspace next
 bindsym $alt+Control+Left workspace prev
-bindsym $super+1 workspace 1
-bindsym $super+2 workspace 2
-bindsym $super+3 workspace 3
-bindsym $super+4 workspace 4
-bindsym $super+5 workspace 5
-bindsym $super+6 workspace 6
+
+bindsym $super+1 workspace $ws1
+bindsym $super+2 workspace $ws2
+bindsym $super+3 workspace $ws3
+bindsym $super+4 workspace $ws4
+bindsym $super+5 workspace $ws5
+bindsym $super+6 workspace $ws6
+bindsym $super+7 workspace $ws7
+bindsym $super+8 workspace $ws8
 
 # move focused container to workspace
-bindsym $super+Shift+1 move container to workspace 1
-bindsym $super+Shift+2 move container to workspace 2
-bindsym $super+Shift+3 move container to workspace 3
-bindsym $super+Shift+4 move container to workspace 4
-bindsym $super+Shift+5 move container to workspace 5
-bindsym $super+Shift+6 move container to workspace 6
+bindsym $super+Ctrl+1 move container to workspace $ws1
+bindsym $super+Ctrl+2 move container to workspace $ws2
+bindsym $super+Ctrl+3 move container to workspace $ws3
+bindsym $super+Ctrl+4 move container to workspace $ws4
+bindsym $super+Ctrl+5 move container to workspace $ws5
+bindsym $super+Ctrl+6 move container to workspace $ws6
+bindsym $super+Ctrl+7 move container to workspace $ws7
+bindsym $super+Ctrl+8 move container to workspace $ws8
 
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+# Move to workspace with focused container
+bindsym $super+Shift+1 move container to workspace $ws1; workspace $ws1
+bindsym $super+Shift+2 move container to workspace $ws2; workspace $ws2
+bindsym $super+Shift+3 move container to workspace $ws3; workspace $ws3
+bindsym $super+Shift+4 move container to workspace $ws4; workspace $ws4
+bindsym $super+Shift+5 move container to workspace $ws5; workspace $ws5
+bindsym $super+Shift+6 move container to workspace $ws6; workspace $ws6
+bindsym $super+Shift+7 move container to workspace $ws7; workspace $ws7
+bindsym $super+Shift+8 move container to workspace $ws8; workspace $ws8
+
+# Open applications on specific workspaces
+# assign [class="Thunderbird"] $ws1
+# assign [class="Pale moon"] $ws2
+# assign [class="Pcmanfm"] $ws3
+# assign [class="Skype"] $ws5
+
+# Open specific applications in floating mode
+for_window [title="alsamixer"] floating enable border pixel 1
+for_window [class="Calamares"] floating enable border normal
+for_window [class="Clipgrab"] floating enable
+for_window [title="File Transfer*"] floating enable
+for_window [class="Galculator"] floating enable border pixel 1
+for_window [class="GParted"] floating enable border normal
+for_window [title="i3_help"] floating enable sticky enable border normal
+for_window [class="Lightdm-gtk-greeter-settings"] floating enable
+for_window [class="Lxappearance"] floating enable sticky enable border normal
+for_window [class="Manjaro Settings Manager"] floating enable border normal
+for_window [class="Manjaro Welcome"] floating enable
+for_window [title="MuseScore: Play Panel"] floating enable
+for_window [class="Nitrogen"] floating enable sticky enable border normal
+for_window [class="Oblogout"] fullscreen enable
+for_window [class="octopi"] floating enable
+for_window [class="Pamac-manager"] floating enable
+for_window [class="Pavucontrol"] floating enable
+for_window [class="qt5ct"] floating enable sticky enable border normal
+for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
+for_window [class="Simple-scan"] floating enable border normal
+for_window [class="(?i)System-config-printer.py"] floating enable border normal
+for_window [class="Skype"] floating enable border normal
+for_window [class="Thus"] floating enable border normal
+for_window [class="Timeset-gui"] floating enable border normal
+for_window [class="(?i)virtualbox"] floating enable border normal
+for_window [class="Xfburn"] floating enable
+for_window [class="Firefox"] floating enable border none
+for_window [class="discord"] floating enable border none
+for_window [class="skypeforlinux"] floating enable border none
+
+# switch to workspace with urgent window automatically
+for_window [urgent=latest] focus
+
+# reload the configuration file
 bindsym $super+Shift+r restart
 
 # exit i3
-bindsym $super+q exec "i3-nagbar -t warning -m 'Really, exit?' -b 'Yes' 'i3-msg exit'"
+bindsym $super+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# Set shut down, restart and locking features
+bindsym $super+0 mode "$mode_system"
+set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+
+    # exit system mode: "Enter" or "Escape"
+    bindsym $super+R mode "default"
+    bindsym $super+E mode "default"
+}
 
 # resize window (you can also use the mouse for that)
+
+bindsym $super+r mode "resize"
+
 mode "resize" {
         bindsym Left resize shrink width 5 px or 5 ppt
         bindsym Down resize grow height 5 px or 5 ppt
@@ -109,28 +217,45 @@ mode "resize" {
         bindsym Right resize grow width 5 px or 5 ppt
         bindsym Return mode "default"
 }
-bindsym $super+r mode "resize"
+
+# Lock screen
+# bindsym $super+9 exec --no-startup-id blurlock
+
+# Colors set from ~/.Xresources
+set_from_resource	$background	background
+set_from_resource	$foreground	foreground
+set_from_resource	$color0		color0
+set_from_resource 	$color1 	color1
+set_from_resource 	$color2 	color2
+set_from_resource 	$color3 	color3
+set_from_resource 	$color4 	color4
+set_from_resource 	$color5 	color5
+set_from_resource 	$color6		color6
+set_from_resource	$color7		color7
+set_from_resource	$color8		color8
+set_from_resource	$color9		color9
+set_from_resource	$color10	color10
+set_from_resource	$color11	color11
+set_from_resource	$color12	color12
+set_from_resource	$color13	color13
+set_from_resource	$color14	color14
+set_from_resource	$color15	color15
 
 
-# window rules, you can find the window class using xprop
-for_window [class=".*"] border pixel 4
-assign [class=URxvt] 1
-assign [class=Firefox|Transmission-gtk] 2
-assign [class=Thunar|File-roller] 3
-assign [class=Geany|Evince|Gucharmap|Soffice|libreoffice*] 4
-assign [class=Audacity|Vlc|mpv|Ghb|Xfburn|Gimp*|Inkscape] 5
-assign [class=Lxappearance|System-config-printer.py|Lxtask|GParted|Pavucontrol|Exo-helper*|Lxrandr|Arandr] 6
-for_window [class=Viewnior|feh|Audacious|File-roller|Lxappearance|Lxtask|Pavucontrol] floating enable
-for_window [class=URxvt|Firefox|Geany|Evince|Soffice|libreoffice*|mpv|Ghb|Xfburn|Gimp*|Inkscape|Vlc|Lxappearance|Audacity] focus
-for_window [class=Xfburn|GParted|System-config-printer.py|Lxtask|Pavucontrol|Exo-helper*|Lxrandr|Arandr] focus
+# Theme colors
+# class                 border  	backgr. 	text    	indic.  	child_border
+# My colors
+client.background	$background
 
-# colour of border, background, text, indicator, and child_border
-client.focused              #bf616a #2f343f #d8dee8 #bf616a #d8dee8
-client.focused_inactive     #2f343f #2f343f #d8dee8 #2f343f #2f343f
-client.unfocused            #2f343f #2f343f #d8dee8 #2f343f #2f343f
-client.urgent               #2f343f #2f343f #d8dee8 #2f343f #2f343f
-client.placeholder          #2f343f #2f343f #d8dee8 #2f343f #2f343f
-client.background           #2f343f
+client.focused         	$foreground	$background	$foreground	$color2		$color2	
+client.unfocused       	$foreground	$background	$foreground	$color4		$color4
+client.focused_inactive	$foreground	$background	$foreground	$color4		$color4
+client.urgent		$foreground	$background	$foreground	$color4		$color4
+client.placeholder	$foreground	$background	$foreground	$color4		$color4
+
+#############################
+### settings for i3-gaps: ###
+#############################
 
 # Set inner/outer gaps
 #for_window [class="^.*"] border pixel 0

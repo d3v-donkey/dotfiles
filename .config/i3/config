@@ -79,16 +79,16 @@ bindsym $super+Shift+Up move up
 bindsym $super+Shift+Right move right
 
 # split orientation
-bindsym $super+h split h; notify-send 'Split Horizontal'
-bindsym $super+v split v; notify-send 'Split Verticale'
+bindsym $super+h split h
+bindsym $super+v split v
 
 # enter fullscreen mode for the focused container
-bindsym $super+f fullscreen toggle; notify-send 'Full Screen'
+bindsym $super+f fullscreen toggle
 
 # change container layout split
-bindsym $super+s layout stacking; notify-send 'Mode stacking'
-bindsym $super+w layout tabbed; notify-send 'Mode tabbed'
-bindsym $super+e layout toggle split; notify-send 'Mode split'
+bindsym $super+s layout stacking
+bindsym $super+w layout tabbed
+bindsym $super+e layout toggle split
 
 # toggle tiling / floating
 bindsym $super+space floating toggle

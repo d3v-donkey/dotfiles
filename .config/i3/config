@@ -241,24 +241,22 @@ set_from_resource	$color13	color13
 set_from_resource	$color14	color14
 set_from_resource	$color15	color15
 
-
-# Theme colors
 # class                 border  	backgr. 	text    	indic.  	child_border
-# My colors
+
 client.background	$background
 
-client.focused         	$foreground	$background	$foreground	$color2		$color2	
+client.focused         	$foreground	$background	$foreground	$color2		$color2
 client.unfocused       	$foreground	$background	$foreground	$color4		$color4
 client.focused_inactive	$foreground	$background	$foreground	$color4		$color4
-client.urgent		$foreground	$background	$foreground	$color4		$color4
-client.placeholder	$foreground	$background	$foreground	$color4		$color4
+client.urgent			$foreground	$background	$foreground	$color4		$color4
+client.placeholder		$foreground	$background	$foreground	$color4		$color4
 
 #############################
 ### settings for i3-gaps: ###
 #############################
 
 # Set inner/outer gaps
-#for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 0
 gaps inner 12
 gaps outer 1
 

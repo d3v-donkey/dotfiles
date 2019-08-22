@@ -33,9 +33,9 @@ bindsym $super+Shift+t exec kitty
 ## Dmenu + Rofi ##
 ##################
 
-bindsym $super+Shift+d exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'Noto Sans:size=8'"
+#bindsym $super+Shift+d exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'Noto Sans:size=8'"
 bindsym $super+d exec rofi -lines 12 -padding 18 -width 60 -location 0 -show drun -sidebar-mode -columns 3 -font 'Noto Sans 8'
-#bindsym $super+Shift+d exec --no-startup-id j4-dmenu-desktop
+bindsym $super+Shift+d exec --no-startup-id j4-dmenu-desktop
 
 ##########################
 ## Common apps keybinds ##
@@ -237,10 +237,10 @@ set_from_resource	$color15	color15
 client.background	$background
 
 client.focused         	$foreground	$background	$foreground	$color2		$color2
-#client.unfocused       	$foreground	$background	$foreground	$color4		$color4
-#client.focused_inactive	$foreground	$background	$foreground	$color4		$color4
-#client.urgent			$foreground	$background	$foreground	$color4		$color4
-#client.placeholder		$foreground	$background	$foreground	$color4		$color4
+#client.unfocused       	$foreground	$background	$foreground	$color4		#662b37
+#client.focused_inactive	$foreground	$background	$foreground	$color4		#662b37
+#client.urgent			$foreground	$background	$foreground	$color4		#662b37
+#client.placeholder		$foreground	$background	$foreground	$color4		#662b37
 
 #############################
 ### settings for i3-gaps: ###
@@ -250,5 +250,3 @@ gaps inner 6
 gaps outer 0
 #for_window [class="^.*"] border pixel 0 # leave title bar undrawn
 new_window pixel 3
-
-

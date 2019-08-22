@@ -237,10 +237,10 @@ set_from_resource	$color15	color15
 client.background	$background
 
 client.focused         	$foreground	$background	$foreground	$color2		$color2
-#client.unfocused       	$foreground	$background	$foreground	$color4		#662b37
-#client.focused_inactive	$foreground	$background	$foreground	$color4		#662b37
-#client.urgent			$foreground	$background	$foreground	$color4		#662b37
-#client.placeholder		$foreground	$background	$foreground	$color4		#662b37
+#client.unfocused       	$foreground	$background	$foreground	$color4		$color9
+#client.focused_inactive	$foreground	$background	$foreground	$color4		$color9
+#client.urgent			$foreground	$background	$foreground	$color4		$color9
+#client.placeholder		$foreground	$background	$foreground	$color4		$color9
 
 #############################
 ### settings for i3-gaps: ###

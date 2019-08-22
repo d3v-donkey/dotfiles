@@ -35,6 +35,7 @@ bindsym $super+Shift+t exec kitty
 
 bindsym $super+Shift+d exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'Noto Sans:size=8'"
 bindsym $super+d exec rofi -lines 12 -padding 18 -width 60 -location 0 -show drun -sidebar-mode -columns 3 -font 'Noto Sans 8'
+#bindsym $super+Shift+d exec --no-startup-id j4-dmenu-desktop
 
 ##########################
 ## Common apps keybinds ##
@@ -152,35 +153,23 @@ bindsym $super+Shift+8 move container to workspace $ws8; workspace $ws8
 # assign [class="Skype"] $ws5
 
 # Open specific applications in floating mode
-for_window [title="alsamixer"] floating enable border pixel 1
-for_window [class="Calamares"] floating enable border normal
-for_window [class="Clipgrab"] floating enable
-for_window [title="File Transfer*"] floating enable
-for_window [class="Galculator"] floating enable border pixel 1
-for_window [class="GParted"] floating enable border normal
-for_window [title="i3_help"] floating enable sticky enable border normal
-for_window [class="Lightdm-gtk-greeter-settings"] floating enable
-for_window [class="Lxappearance"] floating enable sticky enable border normal
-for_window [class="Manjaro Settings Manager"] floating enable border normal
-for_window [class="Manjaro Welcome"] floating enable
-for_window [title="MuseScore: Play Panel"] floating enable
-for_window [class="Nitrogen"] floating enable sticky enable border normal
-for_window [class="Oblogout"] fullscreen enable
-for_window [class="octopi"] floating enable
-for_window [class="Pamac-manager"] floating enable
-for_window [class="Pavucontrol"] floating enable
-for_window [class="qt5ct"] floating enable sticky enable border normal
-for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
-for_window [class="Simple-scan"] floating enable border normal
-for_window [class="(?i)System-config-printer.py"] floating enable border normal
-for_window [class="Skype"] floating enable border normal
-for_window [class="Thus"] floating enable border normal
-for_window [class="Timeset-gui"] floating enable border normal
-for_window [class="(?i)virtualbox"] floating enable border normal
-for_window [class="Xfburn"] floating enable
-for_window [class="Firefox"] floating enable border none
-for_window [class="discord"] floating enable border none
-for_window [class="skypeforlinux"] floating enable border none
+# for_window [title="alsamixer"] floating enable border pixel 1
+# for_window [class="Pcmanfm"] floating enable; border none
+
+# Window border multiplier
+set $borders 1
+
+# Configure border style <normal|1pixel|pixel xx|none|pixel>
+new_window pixel $borders
+new_float pixel $borders
+
+# Hide borders
+hide_edge_borders none
+
+# Change borders
+# bindsym $super+b+n border none
+# bindsym $super+b+p border pixel 2
+# bindsym $super+b+m border normal
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
@@ -259,7 +248,7 @@ client.focused         	$foreground	$background	$foreground	$color2		$color2
 
 gaps inner 6
 gaps outer 0
-for_window [class="^.*"] border pixel 0 # leave title bar undrawn
+#for_window [class="^.*"] border pixel 0 # leave title bar undrawn
 new_window pixel 3
 
 

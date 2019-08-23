@@ -1,0 +1,24 @@
+{
+  "name": "ayu",
+  "version": "5.0.3",
+  "description": "Sublime theme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dempfi/ayu.git"
+  },
+  "author": "Ike Ku",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dempfi/ayu/issues"
+  },
+  "scripts": {
+    "build": "ts-node ./src/build.ts"
+  },
+  "homepage": "https://github.com/dempfi/ayu#readme",
+  "dependencies": {
+    "@types/node": "^11.11.6",
+    "ayu": "^7.2.1",
+    "ts-node": "^8.0.3",
+    "typescript": "^3.3.4000"
+  }
+}

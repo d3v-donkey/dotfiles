@@ -1,63 +1,33 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Path to your oh-my-zsh installation.
+export PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin"
+export BROWSER="/usr/bin/firefox"
+export GOPATH="$HOME/go"
 export ZSH="/home/$(whoami)/.config/oh-my-zsh"
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 
-# bullet-train
-case $(tty) in
-    (/dev/tty[1-9]) ZSH_THEME="pure-thb";;
-                (*) ZSH_THEME="powerlevel9k/powerlevel9k";;
-esac
+ZSH_THEME="xiong-chiamiov-plus"
+#ZSH_THEME="bullet-train"
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  git
-)
+
+
+DISABLE_AUTO_TITLE="true"
+ENABLE_CORRECTION="true"
+HIST_STAMPS="dd.mm.yyyy"
+
+
+plugins=(battery git zsh-syntax-highlighting zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
 export BULLETTRAIN_PROMPT_ORDER=(time virtualenv status custom dir git cmd_exec_time)
 export BULLETTRAIN_PROMPT_CHAR=
 
+# ctrl+p natigate directories with fzf
+export FZF_DEFAULT_OPTS='--height 15% --reverse'
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+bindkey '^P' fzf-cd-widget
 
-# User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-export LANG=fr_FR.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# some git shortcuts
 alias d="git --no-pager diff"
 alias w="git status -s"
 alias l='git lol'
@@ -65,44 +35,58 @@ alias r='git recent -20'
 alias i='git in'
 alias o='git out'
 
-# raw control char for less
-alias less="less -r"
+export LANG=fr_FR.UTF-8
+export EDITOR='vim'
+export ARCHFLAGS="-arch x86_64"
 
-# keep making the mistake...
-alias abd="adb"
-alias wabd="wadb"
+#setopt autocd
 
-# one history per shell
-unsetopt share_history
+alias la='sudo ls -A --color'
+alias lf='sudo ls -A'
+alias vim="vim --servername VIM"
 
-# bindkey '^H' backward-kill-word
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
 
-# ctrl+p natigate directories with fzf
-export FZF_DEFAULT_OPTS='--height 15% --reverse'
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-bindkey '^P' fzf-cd-widget
+# VMAIL
+#export VMAIL_VIM='/usr/bin/nvim'
+#export VMAIL_BROWSER='/usr/bin/chromium'
+#export VMAIL_BROWSER='/usr/bin/opera'
+#export VMAIL_HTML_PART_READER='elinks -dump'
+#export VMAIL_HTML_PART_READER='w3m -dump -T text/html -I utf-8 -O utf-8'
+#alias vmail-main="VMAIL_HOME=/home/raihan/Private/.vmail/main vmail"
+#alias vmail-work="VMAIL_HOME=/home/raihan/Private/.vmail/work vmail"
 
-# disable control flow (ctrl+s, ctrl+q)
-stty -ixon ixoff
+# GRIVE
+#alias grive="./.scripts/grive.sh"
 
-# make caps lock act as esc
-# setxkbmap -option caps:escape
+# WIFI
+#alias wifi="sudo netctl start"
+#alias wifid="sudo netctl stop"
+#alias wifi0="./.scripts/wifi0.sh"
+#alias wifi1="./.scripts/wifi1.sh"
+#alias wifi2="./.scripts/wifi2.sh"
+#alias wifid="sudo ip link set dev wlp2s0 down"
+#alias wifir="sudo ip link set dev wlp2s0 up"
+
+# ETHERNET
+#alias eth="./.scripts/eth.sh"
+#alias ethd="sudo ip link set dev enp1s0 down"
+#alias ethr="sudo ip link set dev enp1s0 up"
+
+# QEMU
+#alias qemuc="qemu-img create -f qcow2"
+#alias qemubsd="qemu-system-x86_64 -enable-kvm -m 1024M -soundhw hda -net nic -net tap,ifname=tap0,script=no,downscript=no -drive file=/home/raihan/qemu/bsd/bsd.img"
+#alias qemulinux="qemu-system-x86_64 -enable-kvm -m 1024M -soundhw hda -drive file=/home/raihan/qemu/linux/linux.img,if=virtio"
+#alias qemulinux-share="qemu-system-x86_64 -enable-kvm -m 1024M -soundhw hda -drive if=pflash,format=raw,readonly,file=/usr/share/ovmf/ovmf_code_x64.bin -drive if=pflash,format=raw,file=/home/raihan/qemu/linux/my_uefi_vars.bin -drive file=/home/raihan/qemu/linux/linux.img,if=virtio -fsdev local,security_model=passthrough,id=fsdev0,path=qemu/share -device virtio-9p-pci,id=fs0,fsdev=fsdev0,mount_tag=hostshare"
+
+# eCryptfs
+#alias mount-crypt="ecryptfs-mount-private"
+#alias umount-crypt="ecryptfs-umount-private"
+
+# Hugo
+#alias hugo-build="hugo server --buildDrafts --navigateToChanged"
+#alias hugo-server="hugo server --navigateToChanged"
 
 
-# using ctrl+z to switch back background app to foreground
-# when the current line is empty.
-function fg-bg() {
-  if [[ $#BUFFER -eq 0 ]]; then
-    fg
-  else
-    zle push-input
-  fi
-}
-zle -N fg-bg
-bindkey '^Z' fg-bg
 
-# Touche de commande
-bindkey "\e[H" beginning-of-line # Début
-bindkey "\e[F" end-of-line # Fin
-bindkey "\e[3~" delete-char
-bindkey "^R" history-incremental-search-backward # Rechercher

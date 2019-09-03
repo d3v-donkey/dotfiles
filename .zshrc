@@ -45,6 +45,9 @@ alias la='sudo ls -A --color'
 alias lf='sudo ls -A'
 alias vim="vim --servername VIM"
 
+# youtube-dl command
+alias mp3="cd ~/Musics && youtube-dl -t -x --audio-format mp3 --audio-quality 0 --no-playlist"
+
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 

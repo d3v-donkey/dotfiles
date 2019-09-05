@@ -54,45 +54,5 @@ neofetch --ascii_colors 2 7 --colors 2 7 2 2 7 7 2
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
-# VMAIL
-#export VMAIL_VIM='/usr/bin/nvim'
-#export VMAIL_BROWSER='/usr/bin/chromium'
-#export VMAIL_BROWSER='/usr/bin/opera'
-#export VMAIL_HTML_PART_READER='elinks -dump'
-#export VMAIL_HTML_PART_READER='w3m -dump -T text/html -I utf-8 -O utf-8'
-#alias vmail-main="VMAIL_HOME=/home/raihan/Private/.vmail/main vmail"
-#alias vmail-work="VMAIL_HOME=/home/raihan/Private/.vmail/work vmail"
-
-# GRIVE
-#alias grive="./.scripts/grive.sh"
-
-# WIFI
-#alias wifi="sudo netctl start"
-#alias wifid="sudo netctl stop"
-#alias wifi0="./.scripts/wifi0.sh"
-#alias wifi1="./.scripts/wifi1.sh"
-#alias wifi2="./.scripts/wifi2.sh"
-#alias wifid="sudo ip link set dev wlp2s0 down"
-#alias wifir="sudo ip link set dev wlp2s0 up"
-
-# ETHERNET
-#alias eth="./.scripts/eth.sh"
-#alias ethd="sudo ip link set dev enp1s0 down"
-#alias ethr="sudo ip link set dev enp1s0 up"
-
-# QEMU
-#alias qemuc="qemu-img create -f qcow2"
-#alias qemubsd="qemu-system-x86_64 -enable-kvm -m 1024M -soundhw hda -net nic -net tap,ifname=tap0,script=no,downscript=no -drive file=/home/raihan/qemu/bsd/bsd.img"
-#alias qemulinux="qemu-system-x86_64 -enable-kvm -m 1024M -soundhw hda -drive file=/home/raihan/qemu/linux/linux.img,if=virtio"
-#alias qemulinux-share="qemu-system-x86_64 -enable-kvm -m 1024M -soundhw hda -drive if=pflash,format=raw,readonly,file=/usr/share/ovmf/ovmf_code_x64.bin -drive if=pflash,format=raw,file=/home/raihan/qemu/linux/my_uefi_vars.bin -drive file=/home/raihan/qemu/linux/linux.img,if=virtio -fsdev local,security_model=passthrough,id=fsdev0,path=qemu/share -device virtio-9p-pci,id=fs0,fsdev=fsdev0,mount_tag=hostshare"
-
-# eCryptfs
-#alias mount-crypt="ecryptfs-mount-private"
-#alias umount-crypt="ecryptfs-umount-private"
-
-# Hugo
-#alias hugo-build="hugo server --buildDrafts --navigateToChanged"
-#alias hugo-server="hugo server --navigateToChanged"
-
 
 

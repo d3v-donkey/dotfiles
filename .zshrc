@@ -48,6 +48,9 @@ alias vim="vim --servername VIM"
 # youtube-dl command
 alias mp3="cd ~/Musics && youtube-dl -t -x --audio-format mp3 --audio-quality 0 --no-playlist"
 
+# neofetch
+neofetch --ascii_colors 2 7 --colors 2 7 2 2 7 7 2
+
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 

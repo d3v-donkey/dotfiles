@@ -1,9 +1,8 @@
 # this file goes in ~
 
-
 background yes
 use_xft yes
-xftfont monospace:pixelsize=11
+xftfont monofur:pixelsize=11
 xftalpha 1
 update_interval 1.0
 total_run_times 0
@@ -29,6 +28,7 @@ cpu_avg_samples 2
 net_avg_samples 2
 override_utf8_locale yes
 use_spacer yes
+own_window_type override
 
 maximum_width 1080
 
@@ -58,5 +58,8 @@ $font ${color1} down [${color2}${downspeed wlp2s0}k/s${color1}]${color}$font ${c
             
 
 ${color3}${execi 15 ss -t -a | grep -e "ESTAB" -e "9050" | tail -n 8 | sed 's/^/├─  /' | sed 's/.$/─┤/'}
+
+
+
 
 

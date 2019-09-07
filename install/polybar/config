@@ -51,9 +51,9 @@ padding-right = 2
 module-margin-right = 0
 module-margin-left = 0
 
-modules-right = mpd volume i3 menu0
-modules-center = date wlan eth battery
-modules-left = cpu cputemp memory resolution
+modules-right = volume menu0
+modules-center = date battery resolution
+modules-left = i3 
 
 separator = "      "
 

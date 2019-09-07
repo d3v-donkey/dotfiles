@@ -288,7 +288,7 @@ label-close =
 
 [module/cputemp]
 type = custom/script
-exec = ~/.config/polybar/CPUtemp.sh 
+exec = ~/bin/CPUtemp.sh 
 tail = true
 interval = 5
 label = " %output%"
@@ -299,7 +299,7 @@ exec = "/usr/bin/env sh -c xrandr |grep " connected"|grep -v "eDP1"| cut -f1 -d'
 tail = false
 interval = 40000
 label  =    %output% 
-click-left = ~/.config/polybar/xrandr.sh
+click-left = ~/bin/xrandr.sh
 
 [module/old_battery]
 type = custom/script

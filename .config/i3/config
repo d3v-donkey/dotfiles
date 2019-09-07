@@ -12,7 +12,7 @@ floating_modifier $super
 ## Autostart ##
 ###############
 
-exec --no-startup-id feh --bg-scale ~/wallpaper/Subway.png
+exec --no-startup-id feh --bg-scale ~/wallpaper/Intel.png
 exec --no-startup-id xsettingsd &
 exec --no-startup-id compton -b
 exec --no-startup-id dunst
@@ -33,9 +33,8 @@ bindsym $super+Shift+t exec kitty
 ## Dmenu + Rofi ##
 ##################
 
-#bindsym $super+Shift+d exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'Noto Sans:size=8'"
+bindsym $super+Shift+d exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'Noto Sans:size=8'"
 bindsym $super+d exec rofi -lines 12 -padding 18 -width 60 -location 0 -show drun -sidebar-mode -columns 3 -font 'Noto Sans 8'
-bindsym $super+Shift+d exec --no-startup-id j4-dmenu-desktop
 
 ##########################
 ## Common apps keybinds ##

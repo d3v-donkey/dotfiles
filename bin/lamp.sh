@@ -9,42 +9,9 @@
 ################# Install #################################################
 
 install() {
-	if [ -f /etc/lsb-release ]; then
-
-        if [ `cat /etc/lsb-release | grep -c "RELEASE=12"` -eq 1 ]; then
-        	echo "Ubuntu Release 12 non supporter par ce script"
-        	exit 1
-
-        elif [ `cat /etc/lsb-release | grep -c "RELEASE=14"` -eq 1 ]; then
-        	echo "Ubuntu Release 14 non supporter par ce script"
-        	exit 1
-
-        elif [ `cat /etc/lsb-release | grep -c "RELEASE=16"` -eq 1 ]; then
-        	echo "Ubuntu Release 16 non supporter par ce script"
-        	exit 1
-
-        else
-            lsb_release -a | grep "Release" 
-            echo "Supporter par cette installation"
-        	
-        fi
-	fi
 
 	sudo apt-get update 
 	sudo apt-get upgrade -y
-
-	echo "Dans le cas où vous ne possédez que l’utilisateur « root », il convient de créer un nouvel utilisateur :"
-	echo -n "Oui(o) or Non(n)?: "
-	read answer
-
-	if [ $answer = 'o' ]; then
-		echo "Username ?"
-		read name
-		sudo adduser $name
-		sudo usermod -aG sudo $name
-		su - $name
-
-	fi
 
 	echo "Donnez un Password 'fort' à votre compte root MySql :"
 	read mysqlrootpassword
@@ -59,6 +26,9 @@ install() {
 
 
 	## install mysql
+	wget http://repo.mysql.com/mysql-apt-config_0.8.13-1_all.deb
+	sudo dpkg -i mysql-apt-config_0.8.13-1_all.deb
+	sudo apt update -y
 	sudo apt install mysql-server -y
 
 	## install phpmysql
@@ -66,10 +36,10 @@ install() {
 
 
 	#config server sql
-	sudo mysql -e "UPDATE mysql.user SET authentication_string = PASSWORD('$mysqlrootpassword'), plugin = 'mysql_native_password' WHERE User = 'root' AND Host = 'localhost';"
-	sudo mysql -e "DROP USER 'phpmyadmin'@'localhost'"
-	sudo mysql -e "DROP DATABASE phpmyadmin"
-	sudo mysql -e "FLUSH PRIVILEGES"
+	#sudo mysql -e "UPDATE mysql.user SET authentication_string = PASSWORD('$mysqlrootpassword'), plugin = 'mysql_native_password' WHERE User = 'root' AND Host = 'localhost';"
+	#sudo mysql -e "DROP USER 'phpmyadmin'@'localhost'"
+	#sudo mysql -e "DROP DATABASE phpmyadmin"
+	#sudo mysql -e "FLUSH PRIVILEGES"
 
 	# S'ajouter au groupe www-data
 	sudo usermod -a -G www-data $(whoami)
@@ -84,15 +54,11 @@ install() {
 	# Créer un lien s'imbolique
 	sudo ln -s /var/www ~/www  > /dev/null
 
-	sudo service apache2 reload
-	sudo service mysql reload
+	sudo systemctl restart apache2
+	sudo systemctl restart mysql
 
 	echo "Installation du serveur Terminer !"
 
-	echo "
-		systemctl start apache2 ou mysql => permet de démarrer le service
-		systemctl stop apache2 ou mysql => permet d’arrêter le service
-		systemctl restart apache2 ou mysql => permet de relancer ou recharger le service "
 }
 
 

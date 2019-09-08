@@ -9,7 +9,7 @@ sudo apt-get update -y
 
 
 ################# PACKAGES #############################################
-sudo apt install npm snapd apt-transport-https -y
+sudo apt install npm snapd apt-transport-https nodejs -y
 
 
 ################# ATOM #################################################
@@ -135,7 +135,7 @@ sudo a2ensite phpmyadmin.conf
 sudo systemctl restart apache2
 sudo systemctl restart mysql
 
-echo "Installation de Lamp Terminer !"
+
 
 
 

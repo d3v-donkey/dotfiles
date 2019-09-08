@@ -1,5 +1,6 @@
 # this file goes in ~
 
+
 background yes
 use_xft yes
 xftfont monofur:pixelsize=11
@@ -30,7 +31,7 @@ override_utf8_locale yes
 use_spacer yes
 own_window_type override
 
-maximum_width 1080
+maximum_width 540
 
 color3 dca014 #jaune
 #color1 0b4753 #bleu
@@ -62,6 +63,10 @@ $font ${color2} CPU Utilise :${color1} $cpu% ${color #ffc11f}
 
 $font ${color2} Battery [${color1} ${battery BAT0} ${color2}]${color2} 
 	$font ${color2} Charge [${color1} ${battery_bar 4,100 BAT0} ${color2}]${color2} 
+
+$font ${color2} Serveur LAMP :
+	$font ${color2} Apache2 [ ${color1}${exec systemctl status apache2 | grep -i 'active' | cut -d " " -f 5} ${color2}]
+	$font ${color2} Mysql [ ${color1}${exec systemctl status mysql | grep -i 'active' | cut -d " " -f 5} ${color2}]
 
 $font ${color2} Interface [ ${color1}${exec ip route get 8.8.8.8 | awk -F"dev " 'NR==1{split($2,a," ");print a[1]}'} ${color2}]
 	$font ${color2} passerelle par défaut ${color2} [${color1} $gw_ip ${color2}]${color2} 

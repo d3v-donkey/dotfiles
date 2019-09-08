@@ -59,14 +59,14 @@ cd
 echo "Votre choix : MySql (s) ou MariaDB (m) :"
 read myDatabase
 
-if [ myDatabase == 's' ]; then
+if [ $myDatabase == 's' ]; then
 	## install mysql
 	wget http://repo.mysql.com/mysql-apt-config_0.8.13-1_all.deb
 	sudo dpkg -i mysql-apt-config_0.8.13-1_all.deb
 	sudo apt update -y
 	sudo apt install mysql-server -y
 
-elif [ myDatabase == 'm' ]; then
+elif [ $myDatabase == 'm' ]; then
 	## install mariadb
 
 	sudo apt install mariadb-server mariadb-client

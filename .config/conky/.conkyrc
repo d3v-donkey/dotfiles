@@ -67,6 +67,7 @@ $font ${color2} Battery [${color1} ${battery BAT0} ${color2}]${color2}
 $font ${color2} Serveur LAMP :
 	$font ${color2} Apache2 [ ${color1}${exec systemctl status apache2 | grep -i 'active' | cut -d " " -f 5} ${color2}]
 	$font ${color2} Mysql [ ${color1}${exec systemctl status mysql | grep -i 'active' | cut -d " " -f 5} ${color2}]
+	$font ${color2} PHP [ ${color1}${exec php --version | grep -i 'cli' | cut -d ' ' -f 2} ${color2}]
 
 $font ${color2} Interface [ ${color1}${exec ip route get 8.8.8.8 | awk -F"dev " 'NR==1{split($2,a," ");print a[1]}'} ${color2}]
 	$font ${color2} passerelle par défaut ${color2} [${color1} $gw_ip ${color2}]${color2} 

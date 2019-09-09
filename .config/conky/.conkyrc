@@ -71,16 +71,15 @@ $font ${color2} Serveur LAMP :
 
 $font ${color2} Interface [ ${color1}${exec ip route get 8.8.8.8 | grep -i 'dev' | cut -d ' ' -f 5 } ${color2}]
 	$font ${color2} passerelle par défaut [ ${color1}${exec ip route get 8.8.8.8 | grep -i 'dev' | cut -d ' ' -f 3 } ${color2}]
-	$font ${color2} Accès MAC du réseau  [${color1} ${wireless_ap} ${color2}]${color2}
-	$font ${color2} Débit du réseau  [${color1} ${wireless_bitrate} ${color2}]${color2}      
-	$font ${color2} Qualité du signal  [${color1} ${wireless_link_qual} ${color2}]${color2}
-	$font ${color2} Qualité du signal en pourcentage  [${color1} ${wireless_link_qual_perc} ${color2}]${color2}  
-	#$font ${color2} Point d'accès ESSID  [${color1} ${wireless_essid} ${color2}]${color2}
-
+	$font ${color2} Wifi
+		$font ${color2} Débit du réseau  [${color1} ${wireless_bitrate} ${color2}]${color2}      
+		$font ${color2} Qualité du signal  [${color1} ${wireless_link_qual} ${color2}]${color2}
+		$font ${color2} Qualité du signal en pourcentage  [${color1} ${wireless_link_qual_perc} ${color2}]${color2}
 	$font ${color2} Local  [ ${color1}${exec ip route get 8.8.8.8 | grep -i 'dev' | cut -d ' ' -f 7 } ${color2}]
 	$font ${color2} Public [ ${color1}${exec curl -s www.icanhazip.com} ${color2}] 
 	$font ${color2} Tor    [ ${color1}${exec torsocks curl -s www.icanhazip.com} ${color2}]
 	$font ${color2} Proxy  [ ${color1}${exec proxychains4 curl -s www.icanhazip.com} ${color2}]
+
 
 	$font ${color2} Port(s) ouvert(s): ${color1} ${tcp_portmon 1 65535 count}
 		$font ${color1} ${tcp_portmon 1 65535 rhost 0} $alignr${tcp_portmon 1 65535 lservice 0}-${tcp_portmon 1 65535 rservice 0}

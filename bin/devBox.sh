@@ -77,10 +77,10 @@ else
 fi
 
 # config server sql
-sudo mysql -e "UPDATE mysql.user SET authentication_string = PASSWORD('toor'), plugin = 'mysql_native_password' WHERE User = 'root' AND Host = 'localhost';"
-sudo mysql -e "DROP USER 'phpmyadmin'@'localhost'"
-sudo mysql -e "DROP DATABASE phpmyadmin"
-sudo mysql -e "FLUSH PRIVILEGES"
+#sudo mysql -e "UPDATE mysql.user SET authentication_string = PASSWORD('toor'), plugin = 'mysql_native_password' WHERE User = 'root' AND Host = 'localhost';"
+#sudo mysql -e "DROP USER 'phpmyadmin'@'localhost'"
+#sudo mysql -e "DROP DATABASE phpmyadmin"
+#sudo mysql -e "FLUSH PRIVILEGES"
 
 ################# Apache #################################################
 sudo apt install apache2 apache2-doc -y

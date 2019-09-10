@@ -136,17 +136,16 @@ Listen 9000
 
 
 # S'ajouter au groupe www-data
-# sudo usermod -a -G www-data $(whoami)
+sudo usermod -a -G www-data $(whoami)
 
 # Associer le groupe www-data au dossier /var/www
-# sudo chgrp -R www-data /var/www/
+sudo chgrp -R www-data /var/www/
 
 # Donne les droits d'écriture a l'utilisateur
-# sudo chown $(whoami):www-data /var/www -R
-# sudo chmod -R g+rwxs /var/www/
+sudo chown $(whoami):www-data /var/www -R
 
 # Créer un lien s'imbolique
-# sudo ln -s /var/www ~/www  > /dev/null
+sudo ln -s /var/www ~/www  > /dev/null
 
 sudo a2ensite phpmyadmin.conf
 sudo systemctl restart apache2

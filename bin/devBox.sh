@@ -55,6 +55,23 @@ StartupWMClass=jetbrains-studio
 
 cd
 
+################# VS-CODE #######################################
+sudo snap install code --classic
+
+echo '
+[Desktop Entry]
+Name=Visual studio Code
+Exec="/snap/bin/code" %f
+Terminal=false
+Icon=code
+Type=Application
+StartupNotify=true
+Categories=TextEditor;Development;Utility;
+MimeType=text/plain;
+' | sudo tee -a  /usr/share/applications/code.desktop  > /dev/null 
+
+cd
+
 ################# LAMP #################################################
 echo "Votre choix : MySql (s) ou MariaDB (m) :"
 read myDatabase

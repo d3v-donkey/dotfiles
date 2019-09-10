@@ -9,7 +9,7 @@ sudo apt-get update -y
 
 
 ################# PACKAGES #############################################
-sudo apt install npm snapd apt-transport-https nodejs filezilla gimp -y
+sudo apt install npm nodejs filezilla gimp -y
 
 
 ################# ATOM #################################################

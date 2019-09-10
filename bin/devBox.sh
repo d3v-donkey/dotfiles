@@ -9,7 +9,7 @@ sudo apt-get update -y
 
 
 ################# PACKAGES #############################################
-sudo apt install npm snapd apt-transport-https nodejs -y
+sudo apt install npm snapd apt-transport-https nodejs filezilla -y
 
 
 ################# ATOM #################################################

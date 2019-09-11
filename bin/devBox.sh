@@ -306,11 +306,14 @@ remove() {
 	atom sublime-text gimp composer libapache2-mod-php php-mysql php-curl php-gd \
 	php-intl php-json php-mbstring php-xml php-zip php-gettext mariadb-server mariadb-client -y
 
-	sudo snap remove code android-studio
-	sudo apt-get autoremove
+	sudo snap remove code android-studio -y
+	sudo apt-get autoremove -y
 
 	sudo rm -rf /opt/phpMyAdmin
+	sudo rm -rf /usr/share/applications/code.desktop
+	sudo rm -rf /usr/share/applications/android-studio.desktop
 	sudo rm -rf /etc/apache2
+	sudo rm -rf /etc/mysql
 	sudo rm -rf /var/www
 	sudo rm -rf ~/www
 }

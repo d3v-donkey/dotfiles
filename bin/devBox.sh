@@ -352,6 +352,6 @@ case "$1" in
         help_
         ;;
 
-    *) echo "[./devBox --help]"; 
+    *) echo "[ Oups saisir sur votre terminal ./devBox --help ]"; 
 esac
 ########################################################################

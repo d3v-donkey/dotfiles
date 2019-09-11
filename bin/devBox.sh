@@ -29,6 +29,10 @@ devBox() {
 	if [ "$wordpress" == "y" ]; then
 		charset="utf8mb4"
 
+		echo "Veuillez entrer le mot de passe utilisateur root MySQL!"
+		echo "Remarque: le mot de passe sera masqué lors de la saisie."
+		read -s rootpasswd
+
 		echo "Afin d'installer Wordpress entrez le nom de la base de données MySQL!  [ Exemple: nomDeVotreSite ]"
 		echo "[ Attention au caractére utilisé : charset="utf8mb4" ]"
 		read dbname
@@ -54,8 +58,7 @@ devBox() {
 
 
 	################# PACKAGES #############################################
-	sudo apt install npm nodejs filezilla gimp composer snapd apt-transport-https \
-	default-jre default-jdk -y
+	sudo apt install npm nodejs filezilla gimp composer -y
 
 
 	################# ATOM #################################################
@@ -211,62 +214,32 @@ devBox() {
 
 	if [ "$wordpress" == "y" ]; then
 
-		if [ -f /root/.my.cnf ]; then
+		echo "Création de la base de données MySQL ..."
+		MYSQL_PWD=${rootpasswd} mysql -u "root" -e "CREATE DATABASE ${dbname} /*\!40100 DEFAULT CHARACTER SET ${charset} */;"
+		#mysql -uroot -p${rootpasswd} -e "CREATE DATABASE ${dbname} /*\!40100 DEFAULT CHARACTER SET ${charset} */;"
+		echo "Base de données créée avec succès!"
 
-			echo "Création de la base de données MySQL ..."
-			mysql -e "CREATE DATABASE ${dbname} /*\!40100 DEFAULT CHARACTER SET ${charset} */;"
-			echo "Base de données créée avec succès!"
+		echo "Affichage des bases de données existantes ..."
+		MYSQL_PWD=${rootpasswd} mysql -u "root" -e "SHOW DATABASES;"
+		#mysql -uroot -p${rootpasswd} -e "show databases;"
+		echo ""
 
-			echo "Affichage des bases de données existantes ..."
-			mysql -e "show databases;"
+		if [ $user == "y" ]; then
+			echo "Création d'un nouvel utilisateur ..."
+			MYSQL_PWD=${rootpasswd} mysql -u "root" -e "CREATE USER ${username}@localhost IDENTIFIED BY '${userpass}';"
+			#mysql -uroot -p${rootpasswd} -e "CREATE USER ${username}@localhost IDENTIFIED BY '${userpass}';"
+			echo "Utilisateur créé avec succès!"
 			echo ""
 
-			if [ $user == "y" ]; then
-				echo "Création d'un nouvel utilisateur ..."
-				mysql -e "CREATE USER ${username}@localhost IDENTIFIED BY '${userpass}';"
-				echo "Utilisateur créé avec succès!"
-				echo ""
-
-				echo "Granting ALL privileges on ${dbname} to ${username}!"
-				mysql -e "GRANT ALL PRIVILEGES ON ${dbname}.* TO '${username}'@'localhost';"
-				mysql -e "FLUSH PRIVILEGES;"
-			fi
-
-			echo "Succèes :)"
-
-		else
-			echo "Veuillez entrer le mot de passe utilisateur root MySQL!"
-			echo "Remarque: le mot de passe sera masqué lors de la saisie."
-			read -s rootpasswd
-
-			echo "Création de la base de données MySQL ..."
-			if mysql -uroot -p${rootpasswd} -e "CREATE DATABASE ${dbname} /*\!40100 DEFAULT CHARACTER SET ${charset} */;"; then
-				echo "Base de données créée avec succès!"
-
-				echo "Affichage des bases de données existantes ..."
-				mysql -uroot -p${rootpasswd} -e "show databases;"
-				echo ""
-
-				if [ $user == "y" ]; then
-					echo "Création d'un nouvel utilisateur ..."
-					mysql -uroot -p${rootpasswd} -e "CREATE USER ${username}@localhost IDENTIFIED BY '${userpass}';"
-					echo "Utilisateur créé avec succès!"
-					echo ""
-
-					echo "Granting ALL privileges on ${dbname} to ${username}!"
-					mysql -uroot -p${rootpasswd} -e "GRANT ALL PRIVILEGES ON ${dbname}.* TO '${username}'@'localhost';"
-					mysql -uroot -p${rootpasswd} -e "FLUSH PRIVILEGES;"
-				fi
-
-				echo "Succèes :)"
-
-			else 
-				echo "Erreur dans la création de votre Base de donnée, veuillez recommencé"
-			fi
-
-			
-
+			echo "Granting ALL privileges on ${dbname} to ${username}!"
+			MYSQL_PWD=${rootpasswd} mysql -u "root" -e "GRANT ALL PRIVILEGES ON ${dbname}.* TO '${username}'@'localhost';"
+			#mysql -uroot -p${rootpasswd} -e "GRANT ALL PRIVILEGES ON ${dbname}.* TO '${username}'@'localhost';"
+			MYSQL_PWD=${rootpasswd} mysql -u "root" -e "FLUSH PRIVILEGES;"
+			#mysql -uroot -p${rootpasswd} -e "FLUSH PRIVILEGES;"
 		fi
+
+		echo "Succèes :)"
+		
 
 		echo "Installation de WordPress"
 		cd /tmp/ && wget -c https://wordpress.org/latest.tar.gz
@@ -301,41 +274,83 @@ devBox() {
 
 } # fin de devBox
 
+remove() {
+	echo "Veuillez entrer le mot de passe utilisateur root MySQL! "
+	read -s rootpasswd
 
+	echo "Un petit instant sauvegarde de vos bases de données"
+
+	DB_USER="root"
+	DB_PASS=${rootpasswd}
+	DB_HOST="localhost"
+	OUTDIR=`date +%Y-%m-%d/%H:%M:%S`
+	mkdir -p ~/$OUTDIR
+
+	# récupération de la liste des bases
+	DATABASES=`MYSQL_PWD=$DB_PASS mysql -u $DB_USER -e "SHOW DATABASES;" | tr -d "| " | grep -v -e Database -e _schema -e mysql`
+	
+	# boucle sur les bases pour les dumper
+	for DB_NAME in $DATABASES; do
+		MYSQL_PWD=$DB_PASS mysqldump -u $DB_USER --single-transaction --skip-lock-tables $DB_NAME -h $DB_HOST > ~/$OUTDIR/$DB_NAME.sql
+	done
+
+	# boucle sur les bases pour compresser les fichiers
+	for DB_NAME in $DATABASES; do
+		gzip ~/$OUTDIR/$DB_NAME.sql
+	done
+
+	sudo systemctl stop apache2
+	sudo systemctl stop mysql
+
+	sudo apt-get purge mysql-server apache2 apache2-doc php npm nodejs filezilla \
+	atom sublime-text gimp composer libapache2-mod-php php-mysql php-curl php-gd \
+	php-intl php-json php-mbstring php-xml php-zip php-gettext mariadb-server mariadb-client -y
+
+	sudo snap remove code android-studio
+	sudo apt-get autoremove
+
+	sudo rm -rf /opt/phpMyAdmin
+	sudo rm -rf /etc/apache2
+	sudo rm -rf /var/www
+	sudo rm -rf ~/www
+}
 
 help_() {
 
 	echo "Bonjour et Bienvenu sur devBox"
 	echo ""
 	echo ""
-	echo "./devBox --install"
+	echo "[ ./devBox --install ]"
 	echo ""
-	echo "Installera selon votre choix une listes d'outils indispensable au dev"
+	echo "	Installera selon votre choix une listes d'outils indispensable au dev"
 
-	echo "Il vous sera possible d'installer :
+	echo "	Il vous sera possible d'installer :
 	
-			- LAMPP [ Apache2 + MySql ou MariaDB + PhpMyAdmin]
-			- Atom
-			- Visual Studio Code
-			- Sublime Text 3
-			- Android Studio
-			- Wordpress 
-			... 
+					- LAMPP [ Apache2 + MySql ou MariaDB + PhpMyAdmin]
+					- Atom
+					- Visual Studio Code
+					- Sublime Text 3
+					- Android Studio
+					- Wordpress 
+					... 
 
-			Le systemes installera des packets tout aussi indispensable comme :
-				- npm 
-				- nodejs 
-				- filezilla 
-				- gimp 
-				- composer 
-				...
+	Le systemes installera des packets tout aussi indispensable comme :
+					- npm 
+					- nodejs 
+					- filezilla 
+					- gimp 
+					- composer 
+					...
 			
-			D'autres suivrons"
+	D'autres suivrons"
 
+	echo ""
+	echo ""
+	echo " [ ./devBox --remove ]"
+	echo ""
+	echo "	Attention remove pas encore opérationnel"
 
-	echo "./devBox --remove"
-
-
+	echo ""
 	echo "./devBox --help"
 
 }

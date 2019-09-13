@@ -1,0 +1,44 @@
+# this file goes in ~
+
+
+background yes
+use_xft yes
+xftfont monofur:pixelsize=20
+xftalpha 1
+update_interval 1.0
+total_run_times 0
+own_window yes
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+double_buffer yes
+draw_shades no
+draw_outline no
+draw_borders yes
+draw_graph_borders no
+stippled_borders 0
+border_margin 0
+border_width 0
+default_color cyan
+default_shade_color black
+default_outline_color white
+alignment top_middle
+#gap_x 10
+#gap_y 15
+no_buffers yes
+cpu_avg_samples 2
+net_avg_samples 2
+override_utf8_locale yes
+use_spacer yes
+own_window_type override
+
+maximum_width 540
+
+color3 dca014 #jaune
+#color1 0b4753 #bleu
+color1 cyan 
+color2 75404b #rouge
+
+TEXT
+
+$font ${color2} [${color2}${color1} ${time %A %d %B %Y} - ${time %H:%M:%S} ${color2}]${color2} 
+

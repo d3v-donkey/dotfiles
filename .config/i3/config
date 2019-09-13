@@ -44,11 +44,7 @@ bindsym $super+d exec rofi -lines 12 -padding 18 -width 60 -location 0 -show dru
 ##########################
 
 bindsym $super+Shift+c exec import -window root Images/capture.png
-bindsym $super+Shift+w exec firefox
-bindsym $super+Shift+n exec pcmanfm
-bindsym $super+n exec gksu pcmanfm
-bindsym $super+Shift+e exec atom
-bindsym $super+Shift+f exec subl
+bindsym $super+Shift+w exec google-chrome
 bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
 bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
 

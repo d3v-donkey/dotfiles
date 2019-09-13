@@ -1,0 +1,11 @@
+Les commandes de bases :
+
+Copier :
+- y permet de copier des choses. Appuyer sur y depuis le mode visuel, avec du texte de sélectionné, pour le copier. 
+
+Couper :
+- d fonctionne de la même manière que y, mais coupe au lieu de copier.
+- Touche supp aussi
+
+Coller :
+- p permet de coller le texte actuellement dans le presse papier de Vim

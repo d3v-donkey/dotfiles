@@ -3,7 +3,7 @@
 
 background yes
 use_xft yes
-xftfont monofur:pixelsize=11
+xftfont monofur:pixelsize=13
 xftalpha 1
 update_interval 1.0
 total_run_times 0
@@ -21,7 +21,7 @@ border_width 0
 default_color cyan
 default_shade_color black
 default_outline_color white
-alignment top_left
+alignment top_right
 gap_x 10
 gap_y 15
 no_buffers yes
@@ -39,11 +39,10 @@ color1 cyan
 color2 75404b #rouge
 
 TEXT
-$font${color1} $nodename - $sysname $kernel on $machine 
-${color2} Mises à jour disponibles : ${color1} ${execi 32000 aptitude search "~U" | grep "^i A" | wc -l}
+$font ${color2} --------- SYSTEM --------- ${color2}
 
-$font ${color2} Time ${color2} [${color2}${color1} ${time %A %d %B %Y} - ${time %H:%M:%S} ${color2}]${color2} 
-$font ${color2} Kernel ${color2} [${color2}${color1} ${exec uname -r | cut -c 1-14} ${color2}]${color2} 
+$font${color1} $nodename - $sysname $kernel on $machine 
+
 $font ${color2} Uptime ${color2} [${color1} $uptime ${color2}]${color2}
 $font ${color2} Fréquence du processeur ${color2} [${color1} $freq_g ${color2}]${color2}
 $font ${color2} CPU Utilise :${color1} $cpu% ${color #ffc11f}
@@ -64,30 +63,12 @@ $font ${color2} CPU Utilise :${color1} $cpu% ${color #ffc11f}
 $font ${color2} Battery [${color1} ${battery BAT0} ${color2}]${color2} 
 	$font ${color2} Charge [${color1} ${battery_bar 4,100 BAT0} ${color2}]${color2} 
 
-$font ${color2} Serveur LAMP :
+
+$font ${color2} --------- SERVER --------- ${color2}
+
+$font ${color2} LAMP : ${color2}
 	$font ${color2} Apache2 [ ${color1}${exec systemctl status apache2 | grep -i 'active' | cut -d " " -f 5} ${color2}]
 	$font ${color2} Mysql [ ${color1}${exec systemctl status mysql | grep -i 'active' | cut -d " " -f 5} ${color2}]
 	$font ${color2} PHP [ ${color1}${exec php --version | grep -i 'cli' | cut -d ' ' -f 2} ${color2}]
 
-$font ${color2} Interface [ ${color1}${exec ip route get 8.8.8.8 | grep -i 'dev' | cut -d ' ' -f 5 } ${color2}]
-	$font ${color2} passerelle par défaut [ ${color1}${exec ip route get 8.8.8.8 | grep -i 'dev' | cut -d ' ' -f 3 } ${color2}]
-	$font ${color2} Wifi
-		$font ${color2} Débit du réseau  [${color1} ${wireless_bitrate} ${color2}]${color2}      
-		$font ${color2} Qualité du signal  [${color1} ${wireless_link_qual} ${color2}]${color2}
-		$font ${color2} Qualité du signal en pourcentage  [${color1} ${wireless_link_qual_perc} ${color2}]${color2}
-	$font ${color2} Local  [ ${color1}${exec ip route get 8.8.8.8 | grep -i 'dev' | cut -d ' ' -f 7 } ${color2}]
-	$font ${color2} Public [ ${color1}${exec curl -s www.icanhazip.com} ${color2}] 
-	$font ${color2} Tor    [ ${color1}${exec torsocks curl -s www.icanhazip.com} ${color2}]
-	$font ${color2} Proxy  [ ${color1}${exec proxychains4 curl -s www.icanhazip.com} ${color2}]
 
-
-	$font ${color2} Port(s) ouvert(s): ${color1} ${tcp_portmon 1 65535 count}
-		$font ${color1} ${tcp_portmon 1 65535 rhost 0} $alignr${tcp_portmon 1 65535 lservice 0}-${tcp_portmon 1 65535 rservice 0}
-		$font ${color1} ${tcp_portmon 1 65535 rhost 1} $alignr${tcp_portmon 1 65535 lservice 1}-${tcp_portmon 1 65535 rservice 1}
-		$font ${color1} ${tcp_portmon 1 65535 rhost 2} $alignr${tcp_portmon 1 65535 lservice 2}-${tcp_portmon 1 65535 rservice 2}
-		$font ${color1} ${tcp_portmon 1 65535 rhost 3} $alignr${tcp_portmon 1 65535 lservice 3}-${tcp_portmon 1 65535 rservice 3}
-		$font ${color1} ${tcp_portmon 1 65535 rhost 4} $alignr${tcp_portmon 1 65535 lservice 4}-${tcp_portmon 1 65535 rservice 4}
-		$font ${color1} ${tcp_portmon 1 65535 rhost 5} $alignr${tcp_portmon 1 65535 lservice 5}-${tcp_portmon 1 65535 rservice 5}
-
-$font ${color1} 
-${exec netstat -paunt | grep -e "ESTAB" -e "9050" | tail -n 8 | sed 's/^//' | sed 's/.$//'}

@@ -1,0 +1,68 @@
+# this file goes in ~
+
+
+background yes
+use_xft yes
+xftfont monofur:pixelsize=13
+xftalpha 1
+update_interval 1.0
+total_run_times 0
+own_window yes
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+double_buffer yes
+draw_shades no
+draw_outline no
+draw_borders yes
+draw_graph_borders no
+stippled_borders 0
+border_margin 0
+border_width 0
+default_color cyan
+default_shade_color black
+default_outline_color white
+alignment top_left
+gap_x 10
+gap_y 15
+no_buffers yes
+cpu_avg_samples 2
+net_avg_samples 2
+override_utf8_locale yes
+use_spacer yes
+own_window_type override
+
+maximum_width 540
+
+color3 dca014 #jaune
+#color1 0b4753 #bleu
+color1 cyan 
+color2 75404b #rouge
+
+TEXT
+$font ${color2} --------- NETWORK --------- ${color2}
+
+$font ${color2} Interface   [ ${color1}${exec ip route get 8.8.8.8 | grep -i 'dev' | cut -d ' ' -f 5 } ${color2}]
+$font ${color2} passerelle  [ ${color1}${exec ip route get 8.8.8.8 | grep -i 'dev' | cut -d ' ' -f 3 } ${color2}]
+$font ${color2} Local       [ ${color1}${exec ip route get 8.8.8.8 | grep -i 'dev' | cut -d ' ' -f 7} ${color2}]
+$font ${color2} Public      [ ${color1}${exec curl -s www.icanhazip.com} ${color2}]
+$font ${color2} Tor         [ ${color1}${exec torsocks curl -s www.icanhazip.com} ${color2}]
+$font ${color2} Proxy       [ ${color1}${exec proxychains4 curl -s www.icanhazip.com} ${color2}]
+
+$font ${color2} Wifi
+		$font ${color2} Essid     [ ${color1}${exec iwlist scan | grep -ie 'essid' | cut -d '"' -f 2} ${color2}]
+		$font ${color2} Débit     [ ${color1}${exec iwconfig | grep -ie 'bit' | cut -d '=' -f 2 | cut -d 'T' -f 1} ${color2}]
+		$font ${color2} Tx-Power  [ ${color1}${exec iwconfig | grep -ie 'tx-power' | cut -d '=' -f 3} ${color2}]
+		$font ${color2} Quality   [ ${color1}${exec iwconfig | grep -ie 'link' | cut -d '=' -f 2 | cut -d 'S' -f 1} ${color2}]
+		$font ${color2} Signal    [ ${color1}${exec iwconfig | grep -ie 'signal' | cut -d '=' -f 3} ${color2}]
+
+
+	$font ${color2} Port(s) ouvert(s): ${color1} ${tcp_portmon 1 65535 count}
+		$font ${color1} ${tcp_portmon 1 65535 rhost 0} $alignr${tcp_portmon 1 65535 lservice 0}-${tcp_portmon 1 65535 rservice 0}
+		$font ${color1} ${tcp_portmon 1 65535 rhost 1} $alignr${tcp_portmon 1 65535 lservice 1}-${tcp_portmon 1 65535 rservice 1}
+		$font ${color1} ${tcp_portmon 1 65535 rhost 2} $alignr${tcp_portmon 1 65535 lservice 2}-${tcp_portmon 1 65535 rservice 2}
+		$font ${color1} ${tcp_portmon 1 65535 rhost 3} $alignr${tcp_portmon 1 65535 lservice 3}-${tcp_portmon 1 65535 rservice 3}
+		$font ${color1} ${tcp_portmon 1 65535 rhost 4} $alignr${tcp_portmon 1 65535 lservice 4}-${tcp_portmon 1 65535 rservice 4}
+		$font ${color1} ${tcp_portmon 1 65535 rhost 5} $alignr${tcp_portmon 1 65535 lservice 5}-${tcp_portmon 1 65535 rservice 5}
+
+$font ${color1} 
+${exec netstat -paunt | grep -e "ESTAB" -e "9050" | tail -n 8 | sed 's/^//' | sed 's/.$//'}

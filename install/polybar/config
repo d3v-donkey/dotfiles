@@ -28,7 +28,7 @@ bottom = true
 dock = false
 wm-restack = i3
 
-monitor = HDMI-0
+monitor = ${env:MONITOR:}
 
 fixed-center = true
 

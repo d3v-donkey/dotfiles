@@ -12,7 +12,7 @@ floating_modifier $super
 ## Autostart ##
 ###############
 
-exec --no-startup-id feh --bg-scale ~/wallpaper/Intel.png
+exec --no-startup-id feh --bg-scale ~/wallpaper/backscreen.jpg
 # exec --no-startup-id ~/.config/i3/wallpapers_random.sh
 exec --no-startup-id xsettingsd &
 exec --no-startup-id compton -b

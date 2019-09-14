@@ -147,11 +147,12 @@ bindsym $super+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $super+Shift+8 move container to workspace $ws8; workspace $ws8
 
 # Open applications on specific workspaces
-# assign [class="Thunderbird"] $ws1
-# assign [class="Pale moon"] $ws2
-# assign [class="Pcmanfm"] $ws3
-# assign [class="Skype"] $ws5
-
+assign [class="kitty"] $ws1
+assign [class="Pcmanfm"] $ws2
+assign [class="VirtualBox Manager"] $ws3
+assign [class="kitty"] $ws4
+assign [class="Google-chrome"] $ws5
+assign [class="Firefox-esr"] $ws5
 # Open specific applications in floating mode
 # for_window [title="alsamixer"] floating enable border pixel 1
 # for_window [class="Pcmanfm"] floating enable; border none

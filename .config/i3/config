@@ -13,7 +13,7 @@ floating_modifier $super
 ###############
 
 exec --no-startup-id feh --bg-scale ~/wallpaper/backscreen.jpg
-# exec --no-startup-id ~/.config/i3/wallpapers_random.sh
+#exec --no-startup-id ~/bin/wallpapers_random.sh
 exec --no-startup-id xsettingsd &
 exec --no-startup-id compton -b
 exec --no-startup-id dunst

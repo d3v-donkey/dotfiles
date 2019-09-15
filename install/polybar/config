@@ -51,8 +51,8 @@ padding-right = 2
 module-margin-right = 0
 module-margin-left = 0
 
-modules-right = volume menu0
-modules-center = date battery resolution
+modules-right = backlight volume menu0
+modules-center = date resolution
 modules-left = i3 
 
 separator = "      "
@@ -141,8 +141,8 @@ toggle-off-foreground = #66
 
 [module/backlight]
 type = internal/xbacklight
-format = <label> <bar>
-label = BL
+format = <label>  : <bar>
+#label = 
 bar-width = 10
 bar-indicator = │
 bar-indicator-foreground = #ff
@@ -277,14 +277,17 @@ label-warn = TEMP %temperature%!!!
 type = custom/menu
 format = <label-toggle> <menu>
 format-padding = 1
+
 menu-0-0 = " shutdown "
 menu-0-0-exec = systemctl poweroff
+
 menu-0-1 = " restart "
 menu-0-1-exec = systemctl reboot
+
 menu-0-2 =   cancel
 label-open = 
 label-close =
-
+#label-separator = |
 
 [module/cputemp]
 type = custom/script
@@ -300,17 +303,6 @@ tail = false
 interval = 40000
 label  =    %output% 
 click-left = ~/bin/xrandr.sh
-
-[module/old_battery]
-type = custom/script
-exec = ~/.config/polybar/bat.sh
-format = <label>
-interval = 30
-label = %output%
-label-foreground = ${colors.foreground}
-click-left = ~/.config/polybar/bat.sh
-click-middle = ~/.config/polybar/bat.sh --bat0
-click-right = ~/.config/polybar/bat.sh --bat1
 
 
 #                        

@@ -20,8 +20,7 @@ exec --no-startup-id dunst
 exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 exec --no-startup-id ~/.config/polybar/launch.sh
 exec --no-startup-id ~/.config/conky/startConky.sh
-# exec --no-startup-id xrandr --auto --output VGA1 --mode 1280x1024 --left-of HDMI1
-# exec --no-startup-id wicd-client --tray &
+exec --no-startup-id numlockx on
 
 
 ###############

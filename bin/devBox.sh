@@ -26,32 +26,6 @@ devBox() {
 	echo "Souhaitez-vous installer Wordpress ? [ 'y' ou 'n' ]"
 	read wordpress
 
-	if [ "$wordpress" == "y" ]; then
-		charset="utf8mb4"
-
-		echo "Veuillez entrer le mot de passe utilisateur root MySQL!"
-		echo "Remarque: le mot de passe sera masqué lors de la saisie."
-		read -s rootpasswd
-
-		echo "Afin d'installer Wordpress entrez le nom de la base de données MySQL!  [ Exemple: nomDeVotreSite ]"
-		echo "[ Attention au caractére utilisé : charset="utf8mb4" ]"
-		read dbname
-
-		echo "Souhaitez-vous créer un nouvel utilisateur associer à la base de données" $dbname "[ 'y' ou 'n' ] "
-		read user
-
-		if [ $user == "y" ]; then
-			echo "Veuillez entrer le NOM du nouvel utilisateur de la base de données MySQL! (exemple: utilisateur1)"
-			read username
-
-			echo "Veuillez entrer le MOT DE PASSE du nouvel utilisateur de la base de données" $dbname
-			echo "Remarque: le mot de passe sera masqué lors de la saisie."
-			read -s userpass
-		fi
-	fi
-
-
-
 	################# MISE A JOURS #########################################
 
 	sudo apt-get update -y
@@ -213,6 +187,28 @@ devBox() {
 	################# WORDPRESS  #####################################################
 
 	if [ "$wordpress" == "y" ]; then
+	
+		charset="utf8mb4"
+
+		echo "Veuillez entrer le mot de passe utilisateur root MySQL!"
+		echo "Remarque: le mot de passe sera masqué lors de la saisie."
+		read -s rootpasswd
+
+		echo "Afin d'installer Wordpress entrez le nom de la base de données MySQL!  [ Exemple: nomDeVotreSite ]"
+		echo "[ Attention au caractére utilisé : charset="utf8mb4" ]"
+		read dbname
+
+		echo "Souhaitez-vous créer un nouvel utilisateur associer à la base de données" $dbname "[ 'y' ou 'n' ] "
+		read user
+
+		if [ $user == "y" ]; then
+			echo "Veuillez entrer le NOM du nouvel utilisateur de la base de données MySQL! (exemple: utilisateur1)"
+			read username
+
+			echo "Veuillez entrer le MOT DE PASSE du nouvel utilisateur de la base de données" $dbname
+			echo "Remarque: le mot de passe sera masqué lors de la saisie."
+			read -s userpass
+		fi
 
 		echo "Création de la base de données MySQL ..."
 		MYSQL_PWD=${rootpasswd} mysql -u "root" -e "CREATE DATABASE ${dbname} /*\!40100 DEFAULT CHARACTER SET ${charset} */;"

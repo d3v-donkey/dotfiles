@@ -308,7 +308,7 @@ remove() {
 	sudo systemctl stop mysql
 
 	sudo apt-get purge mysql-server* apache2* php* npm* nodejs* filezilla* \
-	atom* sublime-text* gimp* composer* mariadb-server* -y
+	atom* sublime-text* gimp* composer* mariadb-server* 
 
 	sudo snap remove code android-studio -y
 	

@@ -116,9 +116,16 @@ devBox() {
 
 		elif [ $myDatabase == 'm' ]; then
 			## install mariadb
-			sudo apt install mariadb-server mariadb-client python-mysqldb
-			sudo mysql -e "UPDATE mysql.user SET authentication_string = PASSWORD('toor'), plugin = 'mysql_native_password' WHERE User = 'root' AND Host = 'localhost';"
-			sudo mysql -e "FLUSH PRIVILEGES"
+			echo "Veuillez entrer le mot de passe utilisateur root SQL!"
+			echo "Remarque: le mot de passe sera masqué lors de la saisie."
+			read -s passwd
+			
+			sudo debconf-set-selections <<< 'mariadb-server mysql-server/root_password password ${passwd}'
+			sudo debconf-set-selections <<< 'mariadb-server mysql-server/root_password_again password ${passwd}'
+			sudo apt install mariadb-server python-mysqldb -y
+			
+			#sudo mysql -e "UPDATE mysql.user SET authentication_string = PASSWORD('toor'), plugin = 'mysql_native_password' WHERE User = 'root' AND Host = 'localhost';"
+			#sudo mysql -e "FLUSH PRIVILEGES"
 
 		else
 			echo 'Aucun gestionnaire de base de donnée choisi !'
@@ -299,20 +306,24 @@ remove() {
 	sudo systemctl stop apache2
 	sudo systemctl stop mysql
 
-	sudo apt-get purge mysql-server apache2 apache2-doc php npm nodejs filezilla \
-	atom sublime-text gimp composer libapache2-mod-php php-mysql php-curl php-gd \
-	php-intl php-json php-mbstring php-xml php-zip php-gettext mariadb-server mariadb-client -y
+	sudo apt-get purge mysql-server* apache2* php* npm* nodejs* filezilla* \
+	atom* sublime-text* gimp* composer* mariadb-server* -y
 
 	sudo snap remove code android-studio -y
-	sudo apt-get autoremove -y
+	
+	sudo apt -y autoremove 
+	sudo apt autoclean
+	sudo apt clean all 
 
 	sudo rm -rf /opt/phpMyAdmin
 	sudo rm -rf /usr/share/applications/code.desktop
 	sudo rm -rf /usr/share/applications/android-studio.desktop
 	sudo rm -rf /etc/apache2
-	sudo rm -rf /etc/mysql
+	sudo rm -rf /etc/mysql/ /var/lib/mysql/ /var/log/mysql
 	sudo rm -rf /var/www
 	sudo rm -rf ~/www
+	
+	sudo apt clean 
 }
 
 help_() {

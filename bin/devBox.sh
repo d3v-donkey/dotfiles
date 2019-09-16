@@ -116,7 +116,7 @@ devBox() {
 
 		elif [ $myDatabase == 'm' ]; then
 			## install mariadb
-			echo "Veuillez entrer le mot de passe utilisateur root SQL!"
+			echo "Veuillez entrer le mot de passe utilisateur root SQL que vous souhaitez !"
 			echo "Remarque: le mot de passe sera masqué lors de la saisie."
 			read -s passwd
 			
@@ -124,6 +124,7 @@ devBox() {
 			sudo debconf-set-selections <<< 'mariadb-server mysql-server/root_password_again password ${passwd}'
 			sudo apt install mariadb-server python-mysqldb -y
 			
+			#sudo mysql -uroot -p${passwd} -e "UPDATE mysql.user SET authentication_string = PASSWORD(${passwd}), plugin = 'mysql_native_password' WHERE User = 'root' AND Host = 'localhost';" 
 			#sudo mysql -e "UPDATE mysql.user SET authentication_string = PASSWORD('toor'), plugin = 'mysql_native_password' WHERE User = 'root' AND Host = 'localhost';"
 			#sudo mysql -e "FLUSH PRIVILEGES"
 

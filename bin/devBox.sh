@@ -116,8 +116,9 @@ devBox() {
 
 		elif [ $myDatabase == 'm' ]; then
 			## install mariadb
-
 			sudo apt install mariadb-server mariadb-client
+			sudo mysql -e "UPDATE mysql.user SET authentication_string = PASSWORD('toor'), plugin = 'mysql_native_password' WHERE User = 'root' AND Host = 'localhost';"
+			sudo mysql -e "FLUSH PRIVILEGES"
 
 		else
 			echo 'Aucun gestionnaire de base de donnée choisi !'

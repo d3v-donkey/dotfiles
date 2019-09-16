@@ -112,11 +112,11 @@ devBox() {
 			wget http://repo.mysql.com/mysql-apt-config_0.8.13-1_all.deb
 			sudo dpkg -i mysql-apt-config_0.8.13-1_all.deb
 			sudo apt update -y
-			sudo apt install mysql-server -y
+			sudo apt install mysql-server python-mysqldb -y
 
 		elif [ $myDatabase == 'm' ]; then
 			## install mariadb
-			sudo apt install mariadb-server mariadb-client
+			sudo apt install mariadb-server mariadb-client python-mysqldb
 			sudo mysql -e "UPDATE mysql.user SET authentication_string = PASSWORD('toor'), plugin = 'mysql_native_password' WHERE User = 'root' AND Host = 'localhost';"
 			sudo mysql -e "FLUSH PRIVILEGES"
 

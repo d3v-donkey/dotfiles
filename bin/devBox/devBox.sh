@@ -338,12 +338,12 @@ help_() {
 	D'autres suivrons
 
 
-					A la fin de l'installation :
-						- apache2 => localhost
-						- PhpMyAdmin => localhost:9000
-						- Wordpress => ~/www/html/
-						- Symfony : traditional web application => symfony new --full my_project 
-						- Symfony : microservice, console application or API: =>  symfony new my_project "
+	A la fin de l'installation :
+					- apache2 => localhost
+					- PhpMyAdmin => localhost:9000
+					- Wordpress => ~/www/html/
+					- Symfony : traditional web application => symfony new --full my_project 
+					- Symfony : microservice, console application or API: =>  symfony new my_project "
 
 
 

@@ -37,30 +37,36 @@ devBox() {
 
 	################# ATOM #################################################
 	if [ "$Atom" == "y" ]; then
-		wget -qO - https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add -
+		sudo snap install atom --classic
 
-		echo "
-		deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main
-		" | sudo tee -a  /etc/apt/sources.list.d/atom.list  > /dev/null 
-
-		sudo apt-get update -y
-		sudo apt-get install atom -y
-
-		cd
+		echo '
+		[Desktop Entry]
+		Name=Atom
+		Exec="/snap/bin/atom" %f
+		Terminal=false
+		Icon=code
+		Type=Application
+		StartupNotify=true
+		Categories=TextEditor;Development;Utility;
+		MimeType=text/plain;
+		' | sudo tee -a  /usr/share/applications/atom.desktop  > /dev/null
 	fi
 
 	################# SUBLIME-TEXT #########################################
 	if [ "$Subl" == "y" ]; then
-		wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+		sudo snap install sublime-text --classic
 
-		echo "
-		deb https://download.sublimetext.com/ apt/stable/
-		" | sudo tee -a  /etc/apt/sources.list.d/sublime-text.list > /dev/null 
-
-		sudo apt-get update -y
-		sudo apt-get install sublime-text -y
-
-		cd
+		echo '
+		[Desktop Entry]
+		Name=Sublime Text 3
+		Exec="/snap/bin/sublime-text.subl" %f
+		Terminal=false
+		Icon=code
+		Type=Application
+		StartupNotify=true
+		Categories=TextEditor;Development;Utility;
+		MimeType=text/plain;
+		' | sudo tee -a  /usr/share/applications/sublime-text.desktop  > /dev/null 
 	fi
 
 	################# ANDROID-STUDIO #######################################
@@ -107,37 +113,53 @@ devBox() {
 		echo "Votre choix : MySql (s) ou MariaDB (m) :"
 		read myDatabase
 
+		echo "Veuillez entrer le mot de passe utilisateur root SQL que vous souhaitez utilisez!"
+		read passwd
+
+		# set password to the root user and grant privileges + automating security sql
+		Q0="USE mysql;"
+		Q1="UPDATE user SET plugin='' WHERE User='root';"
+		Q2="FLUSH PRIVILEGES;"
+
+		Q3="GRANT ALL PRIVILEGES on *.* to 'root'@'localhost' IDENTIFIED BY '$passwd' WITH GRANT OPTION;"
+		Q4="FLUSH PRIVILEGES;"
+
+		Q5="DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');"
+		Q6="DELETE FROM mysql.user WHERE User='';"
+		Q7="FLUSH PRIVILEGES;"
+
+		SQL="${Q0}${Q1}${Q2}${Q3}${Q4}${Q5}${Q6}${Q7}"
+
+		export DEBIAN_FRONTEND="noninteractive"
+
 		if [ $myDatabase == 's' ]; then
 			## install mysql
 			wget http://repo.mysql.com/mysql-apt-config_0.8.13-1_all.deb
 			sudo dpkg -i mysql-apt-config_0.8.13-1_all.deb
 			sudo apt update -y
+
+			sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password PASSWD'
+			sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password PASSWD'
+
 			sudo apt install mysql-server python-mysqldb -y
+
+			sudo mysql -u root -pPASSWD -e "$SQL"
+			sudo systemctl restart mysql
 
 		elif [ $myDatabase == 'm' ]; then
 			## install mariadb
-			echo "Veuillez entrer le mot de passe utilisateur root SQL que vous souhaitez !"
-			echo "Remarque: le mot de passe sera masqué lors de la saisie."
-			read -s passwd
-			
-			sudo debconf-set-selections <<< 'mariadb-server mysql-server/root_password password ${passwd}'
-			sudo debconf-set-selections <<< 'mariadb-server mysql-server/root_password_again password ${passwd}'
+			sudo debconf-set-selections <<< 'maria-db mysql-server/root_password password PASSWD'
+			sudo debconf-set-selections <<< 'maria-db mysql-server/root_password_again password PASSWD'
+
 			sudo apt install mariadb-server python-mysqldb -y
-			
-			#sudo mysql -uroot -p${passwd} -e "UPDATE mysql.user SET authentication_string = PASSWORD(${passwd}), plugin = 'mysql_native_password' WHERE User = 'root' AND Host = 'localhost';" 
-			#sudo mysql -e "UPDATE mysql.user SET authentication_string = PASSWORD('toor'), plugin = 'mysql_native_password' WHERE User = 'root' AND Host = 'localhost';"
-			#sudo mysql -e "FLUSH PRIVILEGES"
+
+			sudo mysql -u root -pPASSWD -e "$SQL"
+			sudo systemctl restart mariadb
 
 		else
 			echo 'Aucun gestionnaire de base de donnée choisi !'
 
 		fi
-
-		# config server sql
-		#sudo mysql -e "UPDATE mysql.user SET authentication_string = PASSWORD('toor'), plugin = 'mysql_native_password' WHERE User = 'root' AND Host = 'localhost';"
-		#sudo mysql -e "DROP USER 'phpmyadmin'@'localhost'"
-		#sudo mysql -e "DROP DATABASE phpmyadmin"
-		#sudo mysql -e "FLUSH PRIVILEGES"
 
 		################# Apache #################################################
 		sudo apt install apache2 apache2-doc -y
@@ -304,27 +326,53 @@ remove() {
 		gzip ~/$OUTDIR/$DB_NAME.sql
 	done
 
-	sudo systemctl stop apache2
-	sudo systemctl stop mysql
+	# test si Mysql ou mariadb est installé
+	MySql=$(dpkg -l | egrep "mysql-server" 2> /dev/null || echo '')
+	MariaDB=$(dpkg -l | egrep "mariadb-server" 2> /dev/null || echo '')
 
-	sudo apt-get purge mysql-server* apache2* php* npm* nodejs* filezilla* \
-	atom* sublime-text* gimp* composer* mariadb-server* 
+	if [ -n "$MySql" ]; then
+		sudo apt purge mysql-server*
 
-	sudo snap remove code android-studio -y
-	
-	sudo apt -y autoremove 
-	sudo apt autoclean
-	sudo apt clean all 
+		    
+	elif [ -n "$MariaDB" ]; then
+		sudo apt purge mariadb-server*
+			
+		    
+	else
+		echo "Aucune database installer"
+		   
+	fi
+
+	# test si apache2 est installé
+	Apache2=$(dpkg -l | egrep "apache2" 2> /dev/null || echo '')
+
+	if [ -n "$Apache2" ]; then
+		sudo apt purge apache2*
+		    
+	else
+		echo "Aucun Server installer"; 
+				   
+	fi
+
+	sudo snap remove code android-studio atom sublime-text -y
+	sudo apt purge php\* npm\* nodejs\* filezilla\* gimp\* composer\* snapd\* -y
+
+	sudo apt autoremove 
+	sudo apt autoclean 
+
 
 	sudo rm -rf /opt/phpMyAdmin
+	sudo rm -rf /snap
 	sudo rm -rf /usr/share/applications/code.desktop
 	sudo rm -rf /usr/share/applications/android-studio.desktop
+	sudo rm -rf /usr/share/applications/sublime-text.desktop
+	sudo rm -rf /usr/share/applications/atom.desktop
 	sudo rm -rf /etc/apache2
 	sudo rm -rf /etc/mysql/ /var/lib/mysql/ /var/log/mysql
 	sudo rm -rf /var/www
 	sudo rm -rf ~/www
-	
-	sudo apt clean 
+
+	sudo apt clean all 
 }
 
 help_() {

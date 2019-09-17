@@ -404,11 +404,7 @@ help_() {
 	echo ""
 	echo " [ ./devBox --remove ]"
 	echo ""
-	echo "	Attention remove pas encore opérationnel"
-
-	echo ""
-	echo "./devBox --help"
-
+	echo "	Suppression de devBox"
 }
 
 ########################################################################

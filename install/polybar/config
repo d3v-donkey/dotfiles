@@ -289,20 +289,13 @@ label-open = 
 label-close =
 #label-separator = |
 
-[module/cputemp]
-type = custom/script
-exec = ~/bin/CPUtemp.sh 
-tail = true
-interval = 5
-label = " %output%"
-
 [module/resolution]
 type = custom/script
 exec = "/usr/bin/env sh -c xrandr |grep " connected"|grep -v "eDP1"| cut -f1 -d' ' "
 tail = false
 interval = 40000
 label  =    %output% 
-click-left = ~/bin/xrandr.sh
+click-left = ~/bin/xrandr/xrandr.sh
 
 
 #                        

@@ -25,6 +25,9 @@ devBox() {
 
 	echo "Souhaitez-vous installer Wordpress ? [ 'y' ou 'n' ]"
 	read wordpress
+	
+	echo "Souhaitez-vous installer Symfony ? [ 'y' ou 'n' ]"
+	read symfony
 
 	################# MISE A JOURS #########################################
 
@@ -293,6 +296,11 @@ devBox() {
 		sudo a2enmod rewrite
 		sudo systemctl restart apache2
 
+	fi
+	
+	if [ "$symfony" == "y" ]; then
+		 wget https://get.symfony.com/cli/installer -O - | bash
+	
 	fi
 
 } # fin de devBox

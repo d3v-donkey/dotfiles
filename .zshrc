@@ -48,7 +48,25 @@ alias sy-api="cd ~/bin/devBox/symfony/ && source symfony-run.sh --new_projet-api
 alias sy-run="cd ~/bin/devBox/symfony/ && source symfony-run.sh --server_run"
 
 # neofetch
-neofetch --ascii_colors 2 7 --colors 2 7 2 2 7 7 2
+# neofetch --ascii_colors 2 7 --colors 2 7 2 2 7 7 2
+echo "
+ALIAS :                                         GIT :
+---------------------------------------         ---------------------------------------------------------------------
+[ youtube-dl ] => mp3                           > git config --global user.name "d3v-donkey" 
+---------------------------------------         > git config --global user.email "d3v-donkey@outlook.com" 
+[ wordpress and database ] => wordpress         ---------------------------------------------------------------------
+---------------------------------------         > git init
+[ symfony project Web ] => sy-web               ---------------------------------------------------------------------
+---------------------------------------         > git pull https://github.com/username/projet_name.git
+[ symfony project Api ] => sy-api               ---------------------------------------------------------------------
+---------------------------------------         > git add nouveau_fichier
+[ Run symfony project ] => sy-run               > git commit -m "d3v-donkey"
+---------------------------------------         > git remote add origin https://github.com/d3v-donkey/d3v-donkey.git                                                                
+                                                > git remote -v                                                      
+                                                > git push --set-upstream origin master                              
+                                                ---------------------------------------------------------------------
+
+"
 
 export PATH="/usr/local/$(whoami)/bin:$PATH"
 

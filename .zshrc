@@ -28,31 +28,29 @@ export FZF_DEFAULT_OPTS='--height 15% --reverse'
 bindkey '^P' fzf-cd-widget
 
 
-alias d="git --no-pager diff"
-alias w="git status -s"
-alias l='git lol'
-alias r='git recent -20'
-alias i='git in'
-alias o='git out'
-
 export LANG=fr_FR.UTF-8
 export EDITOR='vim'
 export ARCHFLAGS="-arch x86_64"
 
-#setopt autocd
-
-alias la='sudo ls -A --color'
-alias lf='sudo ls -A'
-alias vim="vim --servername VIM"
-
 # youtube-dl command
 alias mp3="cd ~/Musics && youtube-dl -t -x --audio-format mp3 --audio-quality 0 --no-playlist"
+
+# Install new wordpress and database
+alias wordpress="cd ~/bin/devBox/wp/wordpress.sh"
+
+# Install new symfony project Web
+alias sy-web="cd ~/bin/devBox/symfony/symfony-run.sh --new_projet-web"
+
+# Install new symfony project Api
+alias sy-api="cd ~/bin/devBox/symfony/symfony-run.sh --new_projet-api"
+
+# Run symfony project 
+alias sy-run="cd ~/bin/devBox/symfony/symfony-run.sh --server_run"
 
 # neofetch
 neofetch --ascii_colors 2 7 --colors 2 7 2 2 7 7 2
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+export PATH="/usr/local/$(whoami)/bin:$PATH"
 
 
 

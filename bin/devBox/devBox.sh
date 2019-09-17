@@ -314,7 +314,7 @@ help_() {
 	echo ""
 	echo "[ ./devBox --install ]"
 	echo ""
-	echo "	Installera selon votre choix une listes d'outils indispensable au dev"
+	echo "	Installation selon votre choix d'une listes d'outils indispensable au dev"
 
 	echo "	Il vous sera possible d'installer :
 	
@@ -335,7 +335,17 @@ help_() {
 					- composer 
 					...
 			
-	D'autres suivrons"
+	D'autres suivrons
+
+
+					A la fin de l'installation :
+						- apache2 => localhost
+						- PhpMyAdmin => localhost:9000
+						- Wordpress => ~/www/html/
+						- Symfony : traditional web application => symfony new --full my_project 
+						- Symfony : microservice, console application or API: =>  symfony new my_project "
+
+
 
 	echo ""
 	echo ""

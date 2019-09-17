@@ -36,16 +36,16 @@ export ARCHFLAGS="-arch x86_64"
 alias mp3="cd ~/Musics && youtube-dl -t -x --audio-format mp3 --audio-quality 0 --no-playlist"
 
 # Install new wordpress and database
-alias wordpress="cd ~/bin/devBox/wp/wordpress.sh"
+alias wordpress="cd ~/bin/devBox/wp/ && source wordpress.sh"
 
 # Install new symfony project Web
-alias sy-web="cd ~/bin/devBox/symfony/symfony-run.sh --new_projet-web"
+alias sy-web="cd ~/bin/devBox/symfony/ && source symfony-run.sh --new_projet-web"
 
 # Install new symfony project Api
-alias sy-api="cd ~/bin/devBox/symfony/symfony-run.sh --new_projet-api"
+alias sy-api="cd ~/bin/devBox/symfony/ && source symfony-run.sh --new_projet-api"
 
 # Run symfony project 
-alias sy-run="cd ~/bin/devBox/symfony/symfony-run.sh --server_run"
+alias sy-run="cd ~/bin/devBox/symfony/ && source symfony-run.sh --server_run"
 
 # neofetch
 neofetch --ascii_colors 2 7 --colors 2 7 2 2 7 7 2

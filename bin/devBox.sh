@@ -110,27 +110,11 @@ devBox() {
 
 	################# LAMPP #################################################
 	if [ "$Lampp" == "y" ]; then
-		echo "Votre choix : MySql (s) ou MariaDB (m) :"
+		echo "[ LAMPP ]"
+		echo ""
+		
+		echo "Database : MySql (s) ou MariaDB (m) :"
 		read myDatabase
-
-		echo "Veuillez entrer le mot de passe utilisateur root SQL que vous souhaitez utilisez!"
-		read passwd
-
-		# set password to the root user and grant privileges + automating security sql
-		Q0="USE mysql;"
-		Q1="UPDATE user SET plugin='' WHERE User='root';"
-		Q2="FLUSH PRIVILEGES;"
-
-		Q3="GRANT ALL PRIVILEGES on *.* to 'root'@'localhost' IDENTIFIED BY '$passwd' WITH GRANT OPTION;"
-		Q4="FLUSH PRIVILEGES;"
-
-		Q5="DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');"
-		Q6="DELETE FROM mysql.user WHERE User='';"
-		Q7="FLUSH PRIVILEGES;"
-
-		SQL="${Q0}${Q1}${Q2}${Q3}${Q4}${Q5}${Q6}${Q7}"
-
-		export DEBIAN_FRONTEND="noninteractive"
 
 		if [ $myDatabase == 's' ]; then
 			## install mysql
@@ -138,20 +122,32 @@ devBox() {
 			sudo dpkg -i mysql-apt-config_0.8.13-1_all.deb
 			sudo apt update -y
 
-			sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password PASSWD'
-			sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password PASSWD'
-
 			sudo apt install mysql-server python-mysqldb -y
-
-			sudo mysql -u root -pPASSWD -e "$SQL"
-			sudo systemctl restart mysql
 
 		elif [ $myDatabase == 'm' ]; then
 			## install mariadb
+			echo "Veuillez entrer le mot de passe root SQL que vous souhaitez utilisez!"
+			read passwd
+
+			export DEBIAN_FRONTEND="noninteractive"
 			sudo debconf-set-selections <<< 'maria-db mysql-server/root_password password PASSWD'
 			sudo debconf-set-selections <<< 'maria-db mysql-server/root_password_again password PASSWD'
 
 			sudo apt install mariadb-server python-mysqldb -y
+			
+			# set password to the root user and grant privileges + automating security sql
+			Q0="USE mysql;"
+			Q1="UPDATE user SET plugin='' WHERE User='root';"
+			Q2="FLUSH PRIVILEGES;"
+
+			Q3="GRANT ALL PRIVILEGES on *.* to 'root'@'localhost' IDENTIFIED BY '$passwd' WITH GRANT OPTION;"
+			Q4="FLUSH PRIVILEGES;"
+
+			Q5="DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');"
+			Q6="DELETE FROM mysql.user WHERE User='';"
+			Q7="FLUSH PRIVILEGES;"
+
+			SQL="${Q0}${Q1}${Q2}${Q3}${Q4}${Q5}${Q6}${Q7}"
 
 			sudo mysql -u root -pPASSWD -e "$SQL"
 			sudo systemctl restart mariadb
@@ -220,10 +216,10 @@ devBox() {
 	if [ "$wordpress" == "y" ]; then
 	
 		charset="utf8mb4"
-
-		echo "Veuillez entrer le mot de passe utilisateur root MySQL!"
-		echo "Remarque: le mot de passe sera masqué lors de la saisie."
-		read -s rootpasswd
+		echo "[ WORDPRESS ]"
+		echo ""
+		echo "Veuillez entrer le mot de passe root MySQL!"
+		read rootpasswd
 
 		echo "Afin d'installer Wordpress entrez le nom de la base de données MySQL!  [ Exemple: nomDeVotreSite ]"
 		echo "[ Attention au caractére utilisé : charset="utf8mb4" ]"

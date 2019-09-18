@@ -6,6 +6,10 @@ new_projet() {
 
     cd ~/www/html && sudo vue init webpack $name
 
-    cd $name && npm install
+    cd $name && sudo npm install
+}
+
+run_projet() {
+    sudo npm run dev
 }
 

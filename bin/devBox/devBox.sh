@@ -32,6 +32,9 @@ devBox() {
 	
 	echo "Souhaitez-vous installer Vue.JS ? [ 'y' ou 'n' ]"
 	read vue
+	
+	echo "Souhaitez-vous installer ionic ? [ 'y' ou 'n' ]"
+	read ionic
 
 	################# MISE A JOURS #########################################
 
@@ -243,14 +246,15 @@ devBox() {
 		cd $DIR/vue/
 		sudo chmod +x vue.sh
 		./vue.sh
-		
-		# creation d'un projet
-		#vue init webpack monprojet
-		
-		# se placer à la racine du projet
-		#npm install
-		#npm run dev
+
+	fi
 	
+	################# IONIC  #####################################################
+	
+	if [ "$ionic" == "y" ]; then
+		cd $DIR/ionic/
+		sudo chmod +x ionic.sh
+		./ionic.sh
 	fi
 	
 	

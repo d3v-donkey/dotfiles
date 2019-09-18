@@ -47,11 +47,17 @@ alias sy-api="cd ~/bin/devBox/symfony/ && source symfony-run.sh --new_projet-api
 # Run symfony project 
 alias sy-run="cd ~/bin/devBox/symfony/ && source symfony-run.sh --server_run"
 
-# Run vue new project 
+# vue new project 
 alias vu-web="cd ~/bin/devBox/vue/ && source vue-run.sh --new-projet"
 
-# Run vue project 
+# vue run project 
 alias vu-run="cd ~/bin/devBox/vue/ && source vue-run.sh --run-projet"
+
+# ionic new project 
+alias io-web="cd ~/bin/devBox/ionic/ && source ionic-run.sh --new-projet"
+
+# ionic run project 
+alias io-run="cd ~/bin/devBox/ionic/ && source ionic-run.sh --run-projet"
 
 # neofetch
 # neofetch --ascii_colors 2 7 --colors 2 7 2 2 7 7 2
@@ -71,6 +77,10 @@ ALIAS :                                         GIT :
 [ Vue project new ] => vu-web                   > git remote -v                                                      
 ---------------------------------------         > git push --set-upstream origin master                              
 [ Vue run project ] => vu-run                   ---------------------------------------------------------------------
+--------------------------------------- 
+[ Ionic new project ] => io-web 
+--------------------------------------- 
+[ Ionic run project ] => io-run 
 --------------------------------------- 
 "
 

@@ -29,6 +29,9 @@ devBox() {
 	
 	echo "Souhaitez-vous installer Symfony ? [ 'y' ou 'n' ]"
 	read symfony
+	
+	echo "Souhaitez-vous installer Vue.JS ? [ 'y' ou 'n' ]"
+	read vue
 
 	################# MISE A JOURS #########################################
 
@@ -225,12 +228,34 @@ devBox() {
 
 	fi
 	
+	################# SYMFONY  #####################################################
+	
 	if [ "$symfony" == "y" ]; then
 		cd $DIR/symfony/
 		sudo chmod +x symfony.sh
 		./symfony.sh
 	
 	fi
+	
+	################# VUES.JS  #####################################################
+	
+	if [ "$vue" == "y" ]; then
+		#cd $DIR/vue/
+		#sudo chmod +x vue.sh
+		#./vue.sh
+		
+		#npm install -g vue-cli
+		
+		# creation d'un projet
+		#vue init webpack monprojet
+		
+		# se placer à la racine du projet
+		#npm install
+		#npm run dev
+	
+	fi
+	
+	
 
 } # fin de devBox
 

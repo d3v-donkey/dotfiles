@@ -37,6 +37,7 @@ devBox() {
 
 	################# PACKAGES #############################################
 	sudo apt install npm nodejs filezilla gimp composer -y
+	sudo npm install npm@latest -g
 
 
 	################# ATOM #################################################

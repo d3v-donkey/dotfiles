@@ -1,3 +1,3 @@
 #!/bin/bash
 
-npm install -g vue-cli
+sudo npm install -g vue-cli

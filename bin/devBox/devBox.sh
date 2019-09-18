@@ -240,11 +240,9 @@ devBox() {
 	################# VUES.JS  #####################################################
 	
 	if [ "$vue" == "y" ]; then
-		#cd $DIR/vue/
-		#sudo chmod +x vue.sh
-		#./vue.sh
-		
-		#npm install -g vue-cli
+		cd $DIR/vue/
+		sudo chmod +x vue.sh
+		./vue.sh
 		
 		# creation d'un projet
 		#vue init webpack monprojet

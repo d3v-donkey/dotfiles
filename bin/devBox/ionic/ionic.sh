@@ -1,3 +1,3 @@
 #!/bin/bash
-sudo npm install -g cordova
-sudo npm install -g ionic
+
+sudo npm install -g ionic cordova

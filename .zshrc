@@ -1,7 +1,6 @@
 
-export PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin"
-export BROWSER="/usr/bin/firefox"
-export GOPATH="$HOME/go"
+export PATH="/usr/local/$(whoami)/bin:$PATH"
+export BROWSER="/usr/bin/google-chrome"
 export ZSH="/home/$(whoami)/.config/oh-my-zsh"
 
 
@@ -53,11 +52,11 @@ alias vu-web="cd ~/bin/devBox/vue/ && source vue-run.sh --new-projet"
 # vue run project 
 alias vu-run="cd ~/bin/devBox/vue/ && source vue-run.sh --run-projet"
 
-# ionic new project 
-alias io-web="cd ~/bin/devBox/ionic/ && source ionic-run.sh --new-projet"
+# React new project 
+alias re-web="cd ~/bin/devBox/react/ && source react-run.sh --new-projet"
 
-# ionic run project 
-alias io-run="cd ~/bin/devBox/ionic/ && source ionic-run.sh --run-projet"
+# React run project 
+alias re-run="cd ~/bin/devBox/react/ && source react-run.sh --run-projet"
 
 # neofetch
 # neofetch --ascii_colors 2 7 --colors 2 7 2 2 7 7 2
@@ -78,13 +77,13 @@ ALIAS :                                         GIT :
 ---------------------------------------         > git push --set-upstream origin master                              
 [ Vue run project ] => vu-run                   ---------------------------------------------------------------------
 --------------------------------------- 
-[ Ionic new project ] => io-web 
+[ ReactJs new project ] => re-web 
 --------------------------------------- 
-[ Ionic run project ] => io-run 
+[ ReactJs run project ] => re-run 
 --------------------------------------- 
 "
 
-export PATH="/usr/local/$(whoami)/bin:$PATH"
+
 
 
 

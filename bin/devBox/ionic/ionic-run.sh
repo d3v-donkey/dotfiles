@@ -5,6 +5,7 @@ new_projet() {
     read name
 
     cd ~/www/html && sudo ionic start $name
+    cd $name && sudo ionic cordova platform add android
 }
 
 run_projet() {

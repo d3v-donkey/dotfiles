@@ -32,6 +32,8 @@ export LANG=fr_FR.UTF-8
 export EDITOR='vim'
 export ARCHFLAGS="-arch x86_64"
 
+############ My config ################
+
 #aide
 alias help="cd ~/bin/devBox/ && source alias.sh"
 

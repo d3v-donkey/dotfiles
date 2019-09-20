@@ -1,5 +1,5 @@
 
-export PATH="/usr/local/$(whoami)/bin:$PATH"
+export PATH="$PATH:/sbin"
 export BROWSER="/usr/bin/google-chrome"
 export ZSH="/home/$(whoami)/.config/oh-my-zsh"
 

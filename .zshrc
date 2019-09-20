@@ -5,8 +5,8 @@ export BROWSER="/usr/bin/google-chrome"
 export ZSH="/home/$(whoami)/.config/oh-my-zsh"
 
 
-ZSH_THEME="xiong-chiamiov-plus"
-#ZSH_THEME="bullet-train"
+#ZSH_THEME="xiong-chiamiov-plus"
+ZSH_THEME="bullet-train/bullet-train"
 
 
 

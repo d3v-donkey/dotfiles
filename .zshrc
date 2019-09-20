@@ -53,10 +53,16 @@ alias vu-web="cd ~/bin/devBox/vue/ && source vue-run.sh --new-projet"
 alias vu-run="cd ~/bin/devBox/vue/ && source vue-run.sh --run-projet"
 
 # React new project 
-alias re-web="cd ~/bin/devBox/react/ && source react-run.sh --new-projet"
+alias re-web="cd ~/bin/devBox/react/ && source reactJS-run.sh --new-projet"
 
 # React run project 
-alias re-run="cd ~/bin/devBox/react/ && source react-run.sh --run-projet"
+alias re-run="cd ~/bin/devBox/react/ && source reactJS-run.sh --run-projet"
+
+# React-Native new project 
+alias rna-web="cd ~/bin/devBox/react/ && source reactNat-run.sh --new-projet"
+
+# React-Native run project 
+alias rna-run="cd ~/bin/devBox/react/ && source reactNat-run.sh --run-projet"
 
 # neofetch
 # neofetch --ascii_colors 2 7 --colors 2 7 2 2 7 7 2
@@ -80,7 +86,11 @@ ALIAS :                                         GIT :
 [ ReactJs new project ] => re-web 
 --------------------------------------- 
 [ ReactJs run project ] => re-run 
+---------------------------------------
+[ ReactNat new project ] => rna-web 
 --------------------------------------- 
+[ ReactNat run project ] => rna-run 
+---------------------------------------  
 "
 
 

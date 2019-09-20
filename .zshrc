@@ -3,6 +3,9 @@
 export PATH="$PATH:/sbin"
 export BROWSER="/usr/bin/google-chrome"
 export ZSH="/home/$(whoami)/.config/oh-my-zsh"
+export LANG=fr_FR.UTF-8
+export EDITOR='vim'
+export ARCHFLAGS="-arch x86_64"
 
 
 #ZSH_THEME="xiong-chiamiov-plus"
@@ -27,10 +30,6 @@ export FZF_DEFAULT_OPTS='--height 15% --reverse'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 bindkey '^P' fzf-cd-widget
 
-
-export LANG=fr_FR.UTF-8
-export EDITOR='vim'
-export ARCHFLAGS="-arch x86_64"
 
 ############ My config ################
 

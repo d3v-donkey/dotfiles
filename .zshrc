@@ -1,4 +1,5 @@
 
+#export PATH="/usr/local/$(whoami)/bin:$PATH"
 export PATH="$PATH:/sbin"
 export BROWSER="/usr/bin/google-chrome"
 export ZSH="/home/$(whoami)/.config/oh-my-zsh"
@@ -14,7 +15,7 @@ ENABLE_CORRECTION="true"
 HIST_STAMPS="dd.mm.yyyy"
 
 
-plugins=(battery git zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -30,6 +31,9 @@ bindkey '^P' fzf-cd-widget
 export LANG=fr_FR.UTF-8
 export EDITOR='vim'
 export ARCHFLAGS="-arch x86_64"
+
+#aide
+alias help="cd ~/bin/devBox/ && source alias.sh"
 
 # youtube-dl command
 alias mp3="cd ~/Musics && youtube-dl -t -x --audio-format mp3 --audio-quality 0 --no-playlist"
@@ -54,34 +58,6 @@ alias rna-web="cd ~/bin/devBox/react/ && source reactNat-run.sh --new-projet"
 
 # neofetch
 # neofetch --ascii_colors 2 7 --colors 2 7 2 2 7 7 2
-echo "
-ALIAS :                                           GIT :
----------------------------------------           ---------------------------------------------------------------------
-[ youtube-dl ] => mp3                             > git config --global user.name "d3v-donkey" 
----------------------------------------           > git config --global user.email "d3v-donkey@outlook.com" 
-[ wordpress and database ] => wordpress           ---------------------------------------------------------------------
----------------------------------------           > git init
-[ symfony project Web ] => sy-web                 ---------------------------------------------------------------------
----------------------------------------           > git pull https://github.com/username/projet_name.git
-[ symfony project Api ] => sy-api                 ---------------------------------------------------------------------
----------------------------------------           > git add nouveau_fichier
-[ Run symfony project ] => symfony server:start   > git commit -m "d3v-donkey"
----------------------------------------           > git remote add origin https://github.com/d3v-donkey/d3v-donkey.git                                                                
-[ Vue project new ] => vu-web                     > git remote -v                                                      
----------------------------------------           > git push --set-upstream origin master                              
-[ Vue run project ] => npm run dev                ---------------------------------------------------------------------
---------------------------------------- 
-[ ReactJs new project ] => re-web 
---------------------------------------- 
-[ ReactJs run project ] => npm start 
----------------------------------------
-[ ReactNat new project ] => rna-web 
---------------------------------------- 
-[ ReactNat run project ] => npm start
----------------------------------------  
-"
-
-
-
-
-
+echo ""
+echo "Alias help => run help"
+echo ""

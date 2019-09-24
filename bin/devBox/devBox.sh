@@ -51,7 +51,7 @@ devBox() {
 
 	################# ATOM #################################################
 	if [ "$Atom" == "y" ]; then
-		sudo snap install atom --classic
+		snap install atom --classic
 
 		echo '
 		[Desktop Entry]
@@ -68,7 +68,7 @@ devBox() {
 
 	################# SUBLIME-TEXT #########################################
 	if [ "$Subl" == "y" ]; then
-		sudo snap install sublime-text --classic
+		snap install sublime-text --classic
 
 		echo '
 		[Desktop Entry]
@@ -85,7 +85,7 @@ devBox() {
 
 	################# ANDROID-STUDIO #######################################
 	if [ "$Android" == "y" ]; then
-		sudo snap install android-studio --classic
+		snap install android-studio --classic
 
 		echo '
 		[Desktop Entry]
@@ -105,7 +105,7 @@ devBox() {
 
 	################# VS-CODE #######################################
 	if [ "$Code" == "y" ]; then
-		sudo snap install code --classic
+		snap install code --classic
 
 		echo '
 		[Desktop Entry]

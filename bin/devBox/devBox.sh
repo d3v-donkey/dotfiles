@@ -26,9 +26,6 @@ devBox() {
 
 	echo "Souhaitez-vous installer Wordpress ? [ 'y' ou 'n' ]"
 	read wordpress
-	
-	echo "Souhaitez-vous installer Symfony ? [ 'y' ou 'n' ]"
-	read symfony
 
 	################# MISE A JOURS #########################################
 
@@ -227,11 +224,8 @@ devBox() {
 	
 	################# SYMFONY  #####################################################
 	
-	if [ "$symfony" == "y" ]; then
-		cd $DIR/symfony/
-		sudo chmod +x symfony.sh
-		./symfony.sh
-	fi
+	wget https://get.symfony.com/cli/installer -O - | bash
+	sudo mv /home/$(whoami)/.symfony/bin/symfony /usr/local/bin/symfony
 	
 	################# VUEJS  #####################################################
 	

@@ -331,7 +331,7 @@ help_() {
 					- Sublime Text 3
 					- Android Studio
 					- Wordpress 
-					- Symfony
+	
 					... 
 
 	Le systemes installera des packets tout aussi indispensable comme :
@@ -340,6 +340,7 @@ help_() {
 					- filezilla 
 					- gimp 
 					- composer 
+					
 					...
 			
 	D'autres suivrons

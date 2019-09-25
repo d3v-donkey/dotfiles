@@ -45,7 +45,7 @@ devBox() {
 
 
 	################# PACKAGES #############################################
-	sudo apt install npm nodejs filezilla gimp composer -y
+	sudo apt install npm nodejs filezilla gimp composer zeal -y
 	sudo npm install npm@latest -g
 
 

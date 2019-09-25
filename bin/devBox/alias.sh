@@ -16,11 +16,11 @@ ALIAS :                                           GIT :
 ---------------------------------------           > git remote add origin https://github.com/d3v-donkey/d3v-donkey.git                                                                
 [ Vue project new ] => vu-web                     > git remote -v                                                      
 ---------------------------------------           > git push --set-upstream origin master                              
-[ Vue run project ] => npm run dev                ---------------------------------------------------------------------
+[ Vue run project ] => npm run dev/npm run serve  ---------------------------------------------------------------------
 --------------------------------------- 
 [ ReactJs new project ] => re-web 
 --------------------------------------- 
-[ ReactJs run project ] => npm start 
+[ ReactJs run project ] => npm start
 ---------------------------------------
 [ ReactNat new project ] => rna-web 
 --------------------------------------- 

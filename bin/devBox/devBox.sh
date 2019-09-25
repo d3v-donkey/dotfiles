@@ -29,15 +29,6 @@ devBox() {
 	
 	echo "Souhaitez-vous installer Symfony ? [ 'y' ou 'n' ]"
 	read symfony
-	
-	echo "Souhaitez-vous installer VueJS ? [ 'y' ou 'n' ]"
-	read vue
-	
-	echo "Souhaitez-vous installer React ? [ 'y' ou 'n' ]"
-	read react
-
-	echo "Souhaitez-vous installer React-Native ? [ 'y' ou 'n' ]"
-	read reactNative
 
 	################# MISE A JOURS #########################################
 
@@ -240,27 +231,19 @@ devBox() {
 		cd $DIR/symfony/
 		sudo chmod +x symfony.sh
 		./symfony.sh
-	
 	fi
 	
 	################# VUEJS  #####################################################
 	
-	if [ "$vue" == "y" ]; then
-		sudo npm install -g @vue/cli-init 
-	fi
-	
+	sudo npm install -g @vue/cli-init 
+
 	################# REACTJS  #####################################################
 	
-	if [ "$react" == "y" ]; then
-		sudo npm install --global create-react-app
-	fi
+	sudo npm install --global create-react-app
 
 	################# REACTNATIVE  #####################################################
-	
-	if [ "$reactNative" == "y" ]; then
-		sudo npm install -g expo-cli
-	fi
-	
+
+	sudo npm install -g expo-cli
 	
 
 } # fin de devBox

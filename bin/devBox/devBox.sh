@@ -116,7 +116,7 @@ devBox() {
 		Type=Application
 		StartupNotify=true
 		Categories=TextEditor;Development;Utility;
-		MimeType=text/plain;
+		MimeType=text/plain;sudo npm install -g @vue/cli-init 
 		' | sudo tee -a  /usr/share/applications/code.desktop  > /dev/null 
 
 		cd
@@ -246,7 +246,7 @@ devBox() {
 	################# VUEJS  #####################################################
 	
 	if [ "$vue" == "y" ]; then
-		sudo npm install -g @vue/cli
+		sudo npm install -g @vue/cli-init 
 	fi
 	
 	################# REACTJS  #####################################################

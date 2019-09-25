@@ -4,7 +4,7 @@ new_projet() {
     echo "Veuillez Choisir le nom de votre projet"
     read name
 
-    cd ~/www/html && sudo expo init $name
+    cd ~/www/html/ReactNat && sudo expo init $name
 }
 
 

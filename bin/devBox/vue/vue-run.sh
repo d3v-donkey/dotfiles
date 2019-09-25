@@ -4,7 +4,7 @@ new_projet() {
     echo "Veuillez Choisir le nom de votre projet"
     read name
 
-    cd ~/www/html && vue init webpack $name
+    cd ~/www/html/VueJS && vue init webpack $name
 
     cd $name && npm install
 }

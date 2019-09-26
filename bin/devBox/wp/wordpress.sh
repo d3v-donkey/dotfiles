@@ -1,12 +1,12 @@
 #!/bin/bash
 
+clear
+
 charset="utf8mb4"
 
+echo ""
 echo "[ WORDPRESS ]"
 echo ""
-
-echo "Veuillez entrer votre mot de passe root MySQL!"
-read rootpasswd
 
 echo "Afin d'installer Wordpress entrez le nom de la base de données MySQL!  [ Exemple: wp_nomDeVotreSite ]"
 
@@ -16,13 +16,15 @@ read dbname
 echo "Souhaitez-vous créer un nouvel utilisateur associer à la base de données" $dbname "[ 'y' ou 'n' ] "
 read user
 
+echo "Veuillez entrer votre mot de passe root MySQL!"
+read rootpasswd
+
 if [ $user == "y" ]; then
 	echo "Veuillez entrer le NOM du nouvel utilisateur de la base de données MySQL! (exemple: utilisateur1)"
 	read username
 
 	echo "Veuillez entrer le MOT DE PASSE du nouvel utilisateur de la base de données" $dbname
-	echo "Remarque: le mot de passe sera masqué lors de la saisie."
-	read -s userpass
+	read userpass
 fi
 
 echo "Création de la base de données MySQL ..."
@@ -58,17 +60,17 @@ tar -xvzf latest.tar.gz
 
 sudo rm -rf latest.tar.gz
 
-sudo mv wordpress/ /var/www/html/$dbname
-sudo chown -R www-data:www-data /var/www/html/$dbname/
-sudo chmod 755 -R /var/www/html/$dbname/
+sudo mv wordpress/ /var/www/$dbname
+sudo chown -R www-data:www-data /var/www/$dbname/
+sudo chmod 755 -R /var/www/$dbname/
 
 echo "
 <VirtualHost *:80>
 	ServerAdmin admin@$dbname.com
-	DocumentRoot /var/www/html/$dbname
+	DocumentRoot /var/www/$dbname
 	ServerName $dbname.com
 
-	<Directory /var/www/html/$dbname>
+	<Directory /var/www/$dbname>
 		Options FollowSymlinks
 		AllowOverride All
 		Require all granted

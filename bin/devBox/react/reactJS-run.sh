@@ -4,7 +4,7 @@ new_projet() {
     echo "Veuillez Choisir le nom de votre projet"
     read name
 
-    cd ~/www/html/ReactJS && create-react-app $name
+    cd ~/labs/ReactJS && create-react-app $name
 }
 
 

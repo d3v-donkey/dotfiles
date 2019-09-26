@@ -241,6 +241,7 @@ devBox() {
 		" | sudo tee -a /etc/apache2/ports.conf > /dev/null
 
 
+
 		# S'ajouter au groupe www-data
 		sudo usermod -a -G www-data $(whoami)
 
@@ -284,6 +285,12 @@ devBox() {
 	################# REACTNATIVE  #####################################################
 
 	sudo npm install -g expo-cli
+	
+	mkdir ~/labs
+	mkdir ~/labs/ReactJS
+	mkdir ~/labs/ReactNat
+	mkdir ~/labs/Symfony
+	mkdir ~/labs/VueJS
 	
 
 } # fin de devBox

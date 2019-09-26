@@ -6,7 +6,7 @@ new_projet-web() {
     read name
 
     #symfony new --full $name
-    cd ~/labs && composer create-project symfony/website-skeleton $name
+     cd ~/labs/Symfony && composer create-project symfony/website-skeleton $name
 
 }
 
@@ -16,7 +16,7 @@ new_projet-api() {
     read name
 
     #cd ~/www/html && symfony new $name
-    cd ~/labs && composer create-project symfony/skeleton $name
+     cd ~/labs/Symfony && composer create-project symfony/skeleton $name
 
 }
 

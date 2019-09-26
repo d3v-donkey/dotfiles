@@ -5,8 +5,8 @@ new_projet-web() {
     echo "Nom de votre projet"
     read name
 
-    #cd ~/www/html && symfony new --full $name
-    cd ~/www/html && composer create-project symfony/website-skeleton $name
+    #symfony new --full $name
+    cd ~/labs && composer create-project symfony/website-skeleton $name
 
 }
 
@@ -16,7 +16,7 @@ new_projet-api() {
     read name
 
     #cd ~/www/html && symfony new $name
-    cd ~/www/html && composer create-project symfony/skeleton $name
+    cd ~/labs && composer create-project symfony/skeleton $name
 
 }
 

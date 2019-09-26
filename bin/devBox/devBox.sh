@@ -249,7 +249,7 @@ devBox() {
 
 		# Donne les droits d'écriture a l'utilisateur
 		# sudo chown $(whoami):www-data /var/www -R
-		sudo chmod -R 777 /var/www/html/
+		sudo chmod -R 777 /var/www/
 
 		# Créer un lien s'imbolique
 		sudo ln -s /var/www ~/www  > /dev/null

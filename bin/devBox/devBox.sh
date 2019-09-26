@@ -396,12 +396,13 @@ help_() {
 
 					[ APACHE2 ]
 					- apache2 => localhost
+					=> dossier /var/www 'lien symbolique dans ~/www'
 
 					[ PHPMYADMIN ]
 					- PhpMyAdmin => localhost:9000
 
 					[ WORDPRESS ] [ .zshrc ]
-					- Wordpress => ~/www/html/nom_de_votre_site
+					- Wordpress => ~/www/nom_de_votre_site
 
 					# Install new wordpress and database .zshrc
 					- alias => wordpress

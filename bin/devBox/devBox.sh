@@ -162,6 +162,7 @@ devBox() {
 		################# Apache #################################################
 		sudo apt install apache2 apache2-doc -y
 		
+		sudo rm -rf /etc/apache2/sites-available/000-default.conf
 		
 		echo '
 		NameVirtualHost *

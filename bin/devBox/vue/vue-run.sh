@@ -5,7 +5,7 @@ new_projet() {
     read name
 
     # cd ~/www/html/VueJS && vue init webpack $name
-    cd ~/www/html/VueJS && vue create $name
+    cd ~/labs/VueJS && vue create $name
     cd $name && npm install
 }
 

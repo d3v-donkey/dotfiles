@@ -7,7 +7,8 @@ ALIAS :
 ---------------------------------------           
 [ youtube-dl ] => mp3                             
 ---------------------------------------           
-[ wordpress and database ] => wordpress           
+[ wordpress and database ] => wordpress
+localhost/wp-admin
 ---------------------------------------       
 [ symfony ] => sym-help 
 ---------------------------------------       

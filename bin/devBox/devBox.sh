@@ -285,6 +285,8 @@ devBox() {
 
 	sudo npm install -g expo-cli
 	
+	mkdir ~/labs
+	
 
 } # fin de devBox
 

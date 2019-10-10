@@ -59,4 +59,6 @@ sudo a2enmod rewrite
 sudo systemctl restart apache2
 
 echo " ---- Succéss ---- "
-echo "http://localhost/$dbname/wp-admin
+echo "http://localhost/$dbname/wp-admin"
+echo "ou"
+echo "localhost + click sur projet"

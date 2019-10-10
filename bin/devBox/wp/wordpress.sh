@@ -13,22 +13,8 @@ echo "Afin d'installer Wordpress entrez le nom de la base de données MySQL!  [ 
 echo "[ Attention au caractére utilisé : charset="utf8mb4" ]"
 read dbname
 
-echo "Souhaitez-vous créer un nouvel utilisateur associer à la base de données" $dbname "[ 'y' ou 'n' ] "
-read user
-
 echo "Veuillez entrer votre mot de passe root MySQL!"
 read rootpasswd
-
-if [ $user == "y" ]; then
-	echo "Veuillez entrer le NOM du nouvel utilisateur de la base de données MySQL! (exemple: utilisateur1)"
-	read username
-
-	echo "Veuillez entrer le MOT DE PASSE du nouvel utilisateur de la base de données" $dbname
-	read userpass
-	
-else
-	echo "ok"
-fi
 
 echo "Création de la base de données MySQL ..."
 MYSQL_PWD=${rootpasswd} mysql -u "root" -e "CREATE DATABASE ${dbname} /*\!40100 DEFAULT CHARACTER SET ${charset} */;"
@@ -39,29 +25,6 @@ echo "Affichage des bases de données existantes ..."
 MYSQL_PWD=${rootpasswd} mysql -u "root" -e "SHOW DATABASES;"
 #mysql -uroot -p${rootpasswd} -e "show databases;"
 echo ""
-
-if [ $user == "y" ]; then
-	echo "Création d'un nouvel utilisateur ..."
-	MYSQL_PWD=${rootpasswd} mysql -u "root" -e "CREATE USER ${username}@localhost IDENTIFIED BY '${userpass}';"
-	#mysql -uroot -p${rootpasswd} -e "CREATE USER ${username}@localhost IDENTIFIED BY '${userpass}';"
-	echo "Utilisateur créé avec succès!"
-	echo ""
-
-	echo "Granting ALL privileges on ${dbname} to ${username}!"
-	MYSQL_PWD=${rootpasswd} mysql -u "root" -e "GRANT ALL PRIVILEGES ON ${dbname}.* TO '${username}'@'localhost';"
-	#mysql -uroot -p${rootpasswd} -e "GRANT ALL PRIVILEGES ON ${dbname}.* TO '${username}'@'localhost';"
-	MYSQL_PWD=${rootpasswd} mysql -u "root" -e "FLUSH PRIVILEGES;"
-	#mysql -uroot -p${rootpasswd} -e "FLUSH PRIVILEGES;"
-	
-	echo "Succèes :)"
-	
-else
-	echo "ok"
-	
-fi
-
-
-		
 
 echo "Installation de WordPress"
 cd /tmp/ && wget -c https://wordpress.org/latest.tar.gz

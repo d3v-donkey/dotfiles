@@ -37,7 +37,7 @@ sudo chown -R www-data:www-data /var/www/$dbname/
 sudo chmod 755 -R /var/www/$dbname/
 
 echo "
-<VirtualHost *:80>
+<VirtualHost *:$dbname>
 	ServerAdmin admin@$dbname.com
 	DocumentRoot /var/www/$dbname
 	ServerName $dbname.com
@@ -57,3 +57,6 @@ echo "
 sudo ln -s /etc/apache2/sites-available/$dbname.conf /etc/apache2/sites-enabled/$dbname.conf
 sudo a2enmod rewrite
 sudo systemctl restart apache2
+
+echo " ---- Succéss ---- "
+echo "http://localhost/$dbname/wp-admin

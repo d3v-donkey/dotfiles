@@ -285,7 +285,9 @@ devBox() {
 
 	sudo npm install -g expo-cli
 	
-	mkdir ~/labs
+	mkdir ~/labs/ReactJS
+	mkdir ~/labs/ReactNat
+	mkdir ~/labs/Symfony 
 	
 
 } # fin de devBox

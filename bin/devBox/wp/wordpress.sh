@@ -25,6 +25,9 @@ if [ $user == "y" ]; then
 
 	echo "Veuillez entrer le MOT DE PASSE du nouvel utilisateur de la base de données" $dbname
 	read userpass
+	
+else
+	echo "ok"
 fi
 
 echo "Création de la base de données MySQL ..."
@@ -49,9 +52,15 @@ if [ $user == "y" ]; then
 	#mysql -uroot -p${rootpasswd} -e "GRANT ALL PRIVILEGES ON ${dbname}.* TO '${username}'@'localhost';"
 	MYSQL_PWD=${rootpasswd} mysql -u "root" -e "FLUSH PRIVILEGES;"
 	#mysql -uroot -p${rootpasswd} -e "FLUSH PRIVILEGES;"
+	
+	echo "Succèes :)"
+	
+else
+	echo "ok"
+	
 fi
 
-echo "Succèes :)"
+
 		
 
 echo "Installation de WordPress"

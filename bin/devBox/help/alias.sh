@@ -8,7 +8,7 @@ ALIAS :
 [ youtube-dl ] => mp3                             
 ---------------------------------------           
 [ wordpress and database ] => wordpress
-localhost/wp-admin
+localhost/nom_du_projet/wp-admin
 ---------------------------------------       
 [ symfony ] => sym-help 
 ---------------------------------------       

@@ -241,22 +241,6 @@ devBox() {
 		" | sudo tee -a /etc/apache2/ports.conf > /dev/null
 
 
-		# S'ajouter au groupe www-data
-		sudo usermod -a -G www-data $(whoami)
-
-		# Associer le groupe www-data au dossier /var/www
-		sudo chgrp -R www-data /var/www/
-
-		# Donne les droits d'écriture a l'utilisateur
-		# sudo chown $(whoami):www-data /var/www -R
-		sudo chmod -R 777 /var/www/
-
-		# Créer un lien s'imbolique
-		sudo ln -s /var/www ~/www  > /dev/null
-
-		sudo a2ensite phpmyadmin.conf
-		sudo systemctl restart apache2
-		sudo systemctl restart mysql
 	fi
 
 	################# WORDPRESS  #####################################################
@@ -289,6 +273,23 @@ devBox() {
 	mkdir ~/labs/ReactJS
 	mkdir ~/labs/ReactNat
 	mkdir ~/labs/Symfony 
+	
+	# S'ajouter au groupe www-data
+	sudo usermod -a -G www-data $(whoami)
+
+	# Associer le groupe www-data au dossier /var/www
+	sudo chgrp -R www-data /var/www/
+
+	# Donne les droits d'écriture a l'utilisateur
+	# sudo chown $(whoami):www-data /var/www -R
+	sudo chmod -R 777 /var/www/
+
+	# Créer un lien s'imbolique
+	sudo ln -s /var/www ~/www  > /dev/null
+
+	sudo a2ensite phpmyadmin.conf
+	sudo systemctl restart apache2
+	sudo systemctl restart mysql
 	
 
 } # fin de devBox

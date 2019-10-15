@@ -153,6 +153,7 @@ assign [class="VirtualBox Manager"] $ws3
 assign [class="kitty"] $ws4
 assign [class="Google-chrome"] $ws5
 assign [class="Firefox-esr"] $ws5
+assign [class="Code"] $ws6
 # Open specific applications in floating mode
 # for_window [title="alsamixer"] floating enable border pixel 1
 # for_window [class="Pcmanfm"] floating enable; border none

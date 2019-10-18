@@ -33,8 +33,8 @@ tar -xvzf latest.tar.gz
 sudo rm -rf latest.tar.gz
 
 sudo mv wordpress/ /var/www/$dbname
-sudo chown -R www-data:www-data /var/www/$dbname/
-sudo chmod 755 -R /var/www/$dbname/
+sudo chown -R www-data:www-data /var/www/$dbname
+sudo chmod -R 777 /var/www/$dbname
 
 echo "
 <VirtualHost *:$dbname>

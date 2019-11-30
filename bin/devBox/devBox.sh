@@ -33,7 +33,7 @@ devBox() {
 
 
 	################# PACKAGES #############################################
-	sudo apt install npm nodejs filezilla gimp composer zeal -y
+	sudo apt install npm nodejs filezilla gimp krita algobox composer zeal -y
 	sudo npm install npm@latest -g
 
 
